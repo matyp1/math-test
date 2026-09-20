@@ -62,6 +62,21 @@ button{font:inherit;color:inherit}
 .toast{position:fixed;z-index:20;left:50%;bottom:95px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#1b1f1b;border:1px solid #3a413b;border-radius:999px;padding:12px 18px;font-size:13px;font-weight:800;transition:.22s;white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(max-width:370px){.tagline{font-size:36px}.blob{width:230px;height:170px}.tile-stage{min-height:330px}.tile{min-height:62px;font-size:27px}.cat{min-height:130px}.puzzle-head h1{font-size:27px}.tap-hand{width:70px;right:4px}.success .success-mascot{width:215px}.celebration{height:180px}.success h1{font-size:44px}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* === FIVE SLOPS BOARD === */
+.board-screen{padding:16px 14px 96px;background:radial-gradient(circle at 62% 8%,#1d2b14 0,#090c09 25%,#050705 62%);overflow-y:auto}
+.board-top{display:grid;grid-template-columns:46px 1fr auto;gap:10px;align-items:start}
+.board-brand{display:flex;align-items:flex-start;gap:8px;min-width:0}.board-brand .brand-img{width:112px;height:86px;object-fit:contain}.brand-note{font-family:cursive;font-size:12px;line-height:1.05;color:#f2eee4;transform:rotate(-4deg);margin-top:18px}
+.board-stats{display:flex;gap:7px;align-items:center}.board-stat{border:1px solid #3b423b;background:#111511;border-radius:17px;padding:8px 10px;text-align:center;min-width:64px;box-shadow:inset 0 0 18px #fff03}.board-stat strong{font-size:18px}.board-stat small{display:block;color:#d7b63a;font-size:9px;font-weight:900}
+.quip-coach{display:flex;align-items:center;justify-content:flex-end;margin:-18px 0 -2px;min-height:94px}.quip-coach img{width:132px;height:100px;object-fit:contain;margin:0;filter:drop-shadow(0 0 18px #9cff2e55)}.speech{position:relative;background:#fffaf0;color:#090a09;border-radius:18px;padding:9px 11px;font-size:11px;line-height:1.12;font-weight:950;max-width:126px;box-shadow:0 5px 0 #c8c0b4}.speech:before{content:"";position:absolute;left:-10px;bottom:16px;border-width:7px 11px 7px 0;border-style:solid;border-color:transparent #fffaf0 transparent transparent}
+.level-strip{display:grid;grid-template-columns:1.1fr 1.5fr .7fr;align-items:center;border:1px solid #7fbf2a;border-radius:18px;background:#0e140e;box-shadow:inset 0 0 24px #a8ff3510,0 0 18px #a8ff3510;overflow:hidden;margin:4px 0 12px}.level-title{padding:11px 14px}.level-title b{display:block;color:var(--lime);font-size:18px;letter-spacing:.08em}.level-title span{font-size:11px;font-weight:950;letter-spacing:.08em}.level-dots{display:flex;justify-content:center;gap:7px}.level-dot{width:31px;height:31px;border-radius:50%;border:2px solid #596159;display:grid;place-items:center;font-size:12px;font-weight:950;color:#9aa19a}.level-dot.clean{border-color:var(--lime);color:#102000;background:var(--lime);box-shadow:0 0 14px #a8ff3555}.level-score{align-self:stretch;border-left:1px solid #536f25;display:grid;place-items:center;text-align:center;font-weight:950;font-size:10px}.level-score b{display:block;font-size:22px}
+.lanes-wrap{overflow-x:auto;scroll-snap-type:x proximity;padding:4px 1px 8px;margin:0 -2px}.lanes{display:grid;grid-template-columns:repeat(5,minmax(128px,1fr));gap:8px;min-width:700px}.lane{scroll-snap-align:start;border:1px solid var(--lane);border-radius:18px;background:linear-gradient(180deg,var(--laneBg),#0c100d 82%);padding:10px 8px 9px;box-shadow:inset 0 0 22px #fff04,0 6px 18px #0006;min-height:295px;display:flex;flex-direction:column}.lane-icon{text-align:center;font-size:27px;height:34px}.lane h3{text-align:center;font-size:12px;line-height:1.02;margin:3px 0 8px;min-height:25px}.slots{display:grid;gap:6px}.slot{height:35px;border:1px solid #687068;border-radius:9px;background:#141914;color:#fff;font-weight:950;font-size:13px;box-shadow:inset 0 0 10px #fff06;cursor:pointer}.slot.locked{background:linear-gradient(#fffdf6,#f6eedf);color:#080908;border-color:#e7dcbf;box-shadow:0 3px 0 #c8c0b2}.slot.filled:not(.locked){background:#202720}.slot.selected{outline:2px solid var(--lime);box-shadow:0 0 17px #a8ff3566}.lane-hint{margin-top:auto;padding-top:9px}.hint-buy{width:100%;height:35px;border:1px solid #6b5b1d;border-radius:11px;background:#15140d;font-size:11px;font-weight:950;cursor:pointer}.hint-text{display:none;color:#ffe894;font-size:9px;line-height:1.2;margin-top:6px;text-align:center}.hint-text.show{display:block}
+.pool{border:1px solid #657264;border-radius:22px;background:linear-gradient(180deg,#101610,#0b0f0b);padding:13px;margin-top:5px;box-shadow:inset 0 0 26px #a8ff3508}.pool-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.pool-title{font-size:14px;font-weight:1000}.pool-title small{display:block;color:#d0d5d0;font-size:10px;font-weight:600;margin-top:2px}.words-left{border:1px solid var(--lime);border-radius:999px;padding:7px 10px;font-size:11px;white-space:nowrap}.words-left b{font-size:18px;color:var(--lime)}.pool-words{display:flex;flex-wrap:wrap;gap:8px;min-height:92px;align-content:flex-start}.pool-word{border:0;border-radius:9px;background:linear-gradient(#fffdf5,#f4ecd9);color:#080908;padding:7px 10px;font-weight:1000;font-size:13px;box-shadow:0 4px 0 #c5bca9;transform:rotate(var(--r,0deg));cursor:pointer}.pool-word.selected{background:linear-gradient(#d8ff7a,#8ff21e);box-shadow:0 4px 0 #4b8f10,0 0 18px #a8ff3566;transform:translateY(-4px) rotate(var(--r,0deg))}
+.board-message{min-height:32px;text-align:center;color:#c4cac4;font-size:11px;font-weight:800;padding:8px 4px 0}.board-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:10px;margin-top:6px}.nudge{border:1px solid #7b691d;border-radius:18px;background:#111511;padding:10px;text-align:left;font-size:10px;line-height:1.25}.nudge b{display:block;font-size:12px;color:#fff;margin-bottom:2px}.check-all{border:0;border-radius:999px;background:linear-gradient(#d5ff63,#8cf018);color:#091006;font-size:17px;font-weight:1000;box-shadow:0 0 26px #9cff2d55;cursor:pointer}.check-all:disabled{filter:grayscale(.75);opacity:.48;box-shadow:none}
+.board-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:max(8px,env(safe-area-inset-bottom));width:min(calc(100% - 28px),442px);height:62px;border:1px solid #2e352f;background:#0c100def;border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);z-index:10;backdrop-filter:blur(12px)}.board-nav button{border:0;background:none;color:#a9aea9;font-size:10px;font-weight:800}.board-nav b{display:block;font-size:19px}.board-nav .active{color:var(--lime)}
+.level-success{justify-content:flex-start!important;text-align:center;background:radial-gradient(circle at 50% 14%,#294117,#0a0d0a 42%,#050605 72%)}.level-success .mascot-img{width:270px;margin:18px auto 0}.level-success h1{font-size:48px;line-height:.9;margin:0 0 6px;letter-spacing:-.05em}.level-success .five-clean{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:20px 0}.clean-chip{border:1px solid #5f752c;border-radius:13px;background:#101610;padding:9px 4px;font-size:9px;font-weight:900}.clean-chip b{display:block;color:var(--lime);font-size:18px}.big-reward{border:1px solid #7b6515;background:#231c08;border-radius:20px;padding:16px;margin:5px 0 14px;font-weight:900}.big-reward strong{font-size:30px;color:#ffd13c}
+@media(max-width:390px){.board-screen{padding-left:11px;padding-right:11px}.board-brand .brand-img{width:96px}.brand-note{display:none}.quip-coach{margin-top:-12px}.quip-coach img{width:112px}.speech{font-size:10px}.level-strip{grid-template-columns:1fr 1.45fr .7fr}.level-title{padding:9px}.level-dot{width:28px;height:28px}.board-actions{grid-template-columns:1fr 1.35fr}.check-all{font-size:15px}}
+
 </style>
 </head>
 <body>
@@ -97,66 +112,131 @@ button{font:inherit;color:inherit}
   <nav class="nav"><button class="active"><b>⌂</b>Home</button><button id="navPuzzles"><b>▦</b>Puzzles</button><button id="navStats"><b>▥</b>Stats</button><button id="navProfile"><b>●</b>Profile</button></nav>
 </section>
 
-<section class="screen" id="puzzle">
-  <div class="puzzle-head">
+<section class="screen board-screen" id="puzzle">
+  <div class="board-top">
     <button class="iconbtn" id="backBtn">‹</button>
-    <div><div class="level-kicker" id="puzzleCount">Level 1 · Puzzle 1 of 5</div><h1>Swap the slop</h1><p>Tap a word to lift it, then tap another word to swap.</p></div>
-    <div class="moves"><small>Moves</small><strong id="moves">0</strong></div>
+    <div class="board-brand"><img class="brand-img" src="assets/wordslop-logo.svg" alt="WORD slop swap"><span class="brand-note">FAMILIAR<br>WORDS.<br>FRESH<br>FUN.</span></div>
+    <div class="board-stats"><div class="board-stat"><strong>🔥 <span id="boardStreak">0</span></strong><small>day streak</small></div><div class="board-stat"><strong>⭐ <span id="boardStars">1</span></strong></div></div>
   </div>
-  <div class="tease" id="tease">DENTAL COURAGE</div>
-  <div class="tile-stage"><div class="tiles" id="tiles"></div><img class="tap-hand" id="tapHand" src="assets/tap-hand.svg" alt="" aria-hidden="true"></div>
-  <div class="puzzle-msg" id="puzzleMsg">No wrong-answer penalty. Keep swapping until it clicks.</div>
-  <div class="clue" id="clue"></div>
-  <div class="puzzle-actions">
-    <button class="hintbtn" id="hintBtn">💡 Extra clue <small>costs ⭐1</small></button>
-    <button class="btn primary check" id="checkBtn">Check answer ›</button>
+  <div class="quip-coach"><img src="assets/quip.svg" alt="Quip"><div class="speech">Five slops.<br>One big mess.<br>You got this!</div></div>
+  <div class="level-strip">
+    <div class="level-title"><b>LEVEL 1</b><span>THE FIVE SLOPS</span></div>
+    <div class="level-dots" id="levelDots"></div>
+    <div class="level-score"><div><b id="solvedCount">0/5</b>SOLVED</div></div>
   </div>
+  <div class="lanes-wrap"><div class="lanes" id="lanes"></div></div>
+  <div class="pool" id="poolBox">
+    <div class="pool-head"><div class="pool-title">∞ &nbsp; THE SLOP PILE<small>Tap a word, then tap a slot to place it.</small></div><div class="words-left"><b id="wordsLeft">18</b> words left</div></div>
+    <div class="pool-words" id="poolWords"></div>
+  </div>
+  <div class="board-message" id="boardMessage">Use each locked word and base hint to rebuild all five phrases.</div>
+  <div class="board-actions"><div class="nudge">💡 <b>Need a nudge?</b>Each lane has a proper clue for ⭐1. No penalties.</div><button class="check-all" id="checkAll">CHECK THE SLOP →</button></div>
+  <nav class="board-nav"><button class="active"><b>⌂</b>Home</button><button><b>♜</b>Levels</button><button><b>▥</b>Stats</button><button><b>●</b>Profile</button></nav>
 </section>
 
-<section class="screen success" id="success">
-  <div class="celebration"><span class="spark s1">★</span><span class="spark s2">★</span><span class="spark s3">✦</span><span class="spark s4">✦</span><img class="mascot-img success-mascot" src="assets/quip.svg" alt="Quip celebrating"></div>
-  <h1>Nice swap!</h1><h2>You solved it!</h2>
-  <div class="answer-card" id="answerCard"></div>
-  <div class="quip" id="quip"></div>
-  <div class="rewards"><div class="rewardbox"><strong id="rewardStars">⭐ +1</strong><br><span class="muted" id="rewardLabel">Star earned!</span></div><div class="ring"><div><b id="streakSuccess">0</b><small>day streak</small></div></div></div>
-  <div class="success-actions"><button class="btn primary" id="nextBtn">Next slop ›</button><button class="btn secondary" id="shareBtn">⇧ &nbsp; Share</button></div>
+<section class="screen level-success" id="success">
+  <img class="mascot-img" src="assets/quip.svg" alt="Quip celebrating">
+  <h1>Clean slop!</h1><h2>All five phrases are back where they belong.</h2>
+  <div class="five-clean" id="fiveClean"></div>
+  <div class="big-reward"><strong id="levelReward">⭐ +5</strong><br><span class="muted">Level reward</span></div>
+  <div class="quip" id="quip">Quip: “Five messes. One very tidy brain.”</div>
+  <div class="success-actions"><button class="btn primary" id="nextBtn">Level 1 complete ✓</button><button class="btn secondary" id="shareBtn">⇧ &nbsp; Share</button></div>
 </section>
 <div class="toast" id="toast"></div>
 </div>
 
 <script>
 (()=>{
-const PUZZLES=[
- {id:"WS011",category:"Sayings",tease:"DENTAL COURAGE",slop:["bullet","the","bite"],solution:["bite","the","bullet"],clue:"Face something unpleasant instead of avoiding it.",quip:"Clean swap. That phrase has backbone now."},
- {id:"WS002",category:"Sayings",tease:"LOUDER HANDS",slop:["words","than","louder","speak","actions"],solution:["actions","speak","louder","than","words"],clue:"What people do matters more than what they promise.",quip:"Old wisdom, freshly untangled."},
- {id:"WS009",category:"Sayings",tease:"FASHIONABLY LATE",slop:["never","than","better","late"],solution:["better","late","than","never"],clue:"Arriving eventually is preferable to not arriving at all.",quip:"The words have agreed to cooperate."},
- {id:"WS047",category:"Riddles",tease:"CLOCK",slop:["clap","has","cannot","what","hands","but"],solution:["what","has","hands","but","cannot","clap"],clue:"Its hands travel around a numbered face.",quip:"Nice. The answer was hiding in plain sight."},
- {id:"WS008",category:"Sayings",tease:"IMPATIENT DINNER",slop:["never","watched","boils","a","pot"],solution:["a","watched","pot","never","boils"],clue:"Waiting closely can make time feel much slower.",quip:"Lovely. The sentence is back from its little wobble."}
+const PHRASES=[
+ {id:"P1",icon:"🦷",name:"DENTAL COURAGE",solution:["bite","the","bullet"],lock:1,clue:"Face something unpleasant instead of avoiding it.",tone:"#d0a61d",bg:"#2b240c"},
+ {id:"P2",icon:"📣",name:"LOUDER HANDS",solution:["actions","speak","louder","than","words"],lock:2,clue:"What people do matters more than what they promise.",tone:"#29a9d8",bg:"#0b2530"},
+ {id:"P3",icon:"🕒",name:"FASHIONABLY LATE",solution:["better","late","than","never"],lock:1,clue:"Arriving eventually is preferable to not arriving at all.",tone:"#7ebc29",bg:"#18270e"},
+ {id:"P4",icon:"🍲",name:"IMPATIENT DINNER",solution:["a","watched","pot","never","boils"],lock:1,clue:"Waiting closely can make time feel much slower.",tone:"#cf6947",bg:"#2a1510"},
+ {id:"P5",icon:"🐦",name:"EARLY RISER",solution:["the","early","bird","catches","the","worm"],lock:2,clue:"A morning creature gets the prize before everyone else.",tone:"#35a9d5",bg:"#0d2630"}
 ];
-const validIds=new Set(PUZZLES.map(p=>p.id));const savedCompleted=JSON.parse(localStorage.getItem("wss2_completed")||"[]").filter(id=>validIds.has(id));const state={index:0,words:[],selected:null,moves:0,stars:localStorage.getItem("wss2_stars")===null?1:+localStorage.getItem("wss2_stars"),streak:+localStorage.getItem("wss2_streak")||0,completed:savedCompleted,clueUsed:false,tutorialSeen:sessionStorage.getItem("wss_tutorial_seen")==="1"};
 const $=id=>document.getElementById(id);
+const makeToken=(p,i)=>({id:p.id+"-"+i,word:p.solution[i],p:p.id,i});
+const freshBoard=()=>PHRASES.map(p=>p.solution.map((w,i)=>i===p.lock?makeToken(p,i):null));
+const freshPool=()=>{const arr=[];PHRASES.forEach(p=>p.solution.forEach((w,i)=>{if(i!==p.lock)arr.push(makeToken(p,i))}));const order=["P2-0","P1-0","P3-3","P2-4","P4-2","P2-3","P3-0","P5-0","P2-1","P5-3","P4-4","P5-5","P5-1","P4-0","P1-2","P4-3","P3-2","P5-4"];return order.map(id=>arr.find(t=>t.id===id)).filter(Boolean)};
+const state={board:freshBoard(),pool:freshPool(),selected:null,hints:new Set(),stars:localStorage.getItem("wss3_stars")===null?1:+localStorage.getItem("wss3_stars"),streak:+localStorage.getItem("wss3_streak")||0,completed:localStorage.getItem("wss3_level1")==="1"};
 function screen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo(0,0)}
 function buzz(ms){try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}}
 function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1700)}
-function save(){localStorage.setItem("wss2_stars",state.stars);localStorage.setItem("wss2_streak",state.streak);localStorage.setItem("wss2_completed",JSON.stringify(state.completed))}
-function sync(){ $("starsHome").textContent=state.stars;$("streakHome").textContent=state.streak;$("streakSuccess").textContent=state.streak;renderProgress()}
-function levelComplete(){return PUZZLES.every(p=>state.completed.includes(p.id))}
-function renderProgress(){const p=$("progress");p.innerHTML="";for(let i=0;i<PUZZLES.length;i++){const done=state.completed.includes(PUZZLES[i].id);const d=document.createElement("div");d.className="dot"+(done?" done":"");d.textContent=done?"✓":String(i+1);p.appendChild(d);if(i<PUZZLES.length-1){const b=document.createElement("div");b.className="bar"+(state.completed.includes(PUZZLES[i].id)?" done":"");p.appendChild(b)}}}
-function updateTutorial(){const show=state.index===0&&!state.tutorialSeen&&state.selected===null;$("tapHand").classList.toggle("show",show)}
-function openPuzzle(i=0){state.index=(i+PUZZLES.length)%PUZZLES.length;const p=PUZZLES[state.index];state.words=[...p.slop];state.selected=null;state.moves=0;state.clueUsed=false;$("moves").textContent="0";$("puzzleCount").textContent="Level 1 · Puzzle "+(state.index+1)+" of "+PUZZLES.length;$("tease").textContent=p.tease;$("clue").textContent=p.clue;$("clue").classList.remove("show");$("puzzleMsg").textContent="No wrong-answer penalty. Arrange it, then press Check answer.";renderTiles();screen("puzzle");updateTutorial()}
-function renderTiles(anim=[]){const box=$("tiles");box.innerHTML="";state.words.forEach((w,i)=>{const b=document.createElement("button");b.className="tile"+(state.selected===i?" selected":"")+(anim.includes(i)?" swap":"");b.textContent=w;b.setAttribute("aria-pressed",state.selected===i);b.onclick=()=>selectWord(i);box.appendChild(b)})}
-function selectWord(i){if(state.selected===null){state.selected=i;if(!state.tutorialSeen){state.tutorialSeen=true;sessionStorage.setItem("wss_tutorial_seen","1");$("tapHand").classList.remove("show")} $("puzzleMsg").textContent="“"+state.words[i]+"” lifted — tap the word you want to swap it with.";buzz(8);renderTiles();return}if(state.selected===i){state.selected=null;$("puzzleMsg").textContent="Selection cleared.";renderTiles();return}const a=state.selected;[state.words[a],state.words[i]]=[state.words[i],state.words[a]];state.selected=null;state.moves++;$("moves").textContent=state.moves;$("puzzleMsg").textContent="Swap made. Press Check answer when you’re ready.";buzz(12);renderTiles([a,i])}
-function correct(){return state.words.every((w,i)=>w===PUZZLES[state.index].solution[i])}
-function check(){if(correct())solve();else{buzz(5);$("puzzleMsg").textContent=["Not the phrase yet. Give the slop another swap.","Close shape — the words still need a shuffle.","Quip squints. Something is still out of order."][state.moves%3]}}
-function solve(){const p=PUZZLES[state.index];const firstSolve=!state.completed.includes(p.id);if(firstSolve){state.completed.push(p.id);state.stars++;if(state.completed.length===1)state.streak++}save();sync();$("rewardStars").textContent=firstSolve?"⭐ +1":"⭐ +0";$("rewardLabel").textContent=firstSolve?"Star earned!":"Already solved";$("nextBtn").textContent=levelComplete()?"Level 1 complete ✓":"Next slop ›";$("answerCard").innerHTML=p.solution.map(w=>'<div class="answer-word">'+w.charAt(0).toUpperCase()+w.slice(1)+'</div>').join("");$("quip").textContent="Quip: “"+p.quip+"”";buzz(22);screen("success")}
-function buyHint(){if(state.clueUsed){$("clue").classList.toggle("show");return}if(state.stars<1){toast("You need 1 star for a clue.");return}state.stars--;state.clueUsed=true;save();sync();$("clue").classList.add("show");$("puzzleMsg").textContent="⭐ 1 spent. Here’s your proper clue.";buzz(10)}
-$("startBtn").onclick=()=>{sync();screen("home")};$("dailyBtn").onclick=()=>openPuzzle(0);$("todayCard").onclick=()=>openPuzzle(0);$("backBtn").onclick=()=>{sync();screen("home")};$("checkBtn").onclick=check;$("hintBtn").onclick=buyHint;
-$("nextBtn").onclick=()=>{if(levelComplete()){sync();screen("home");toast("Level 1 complete — all five slops solved.");return}openPuzzle(state.index+1)};
-$("shareBtn").onclick=async()=>{const text="I just solved a WORD slop swap! 🟢⭐";try{if(navigator.share)await navigator.share({title:"WORD slop swap",text});else{await navigator.clipboard.writeText(text);toast("Result copied!")}}catch(e){}};
+function save(){localStorage.setItem("wss3_stars",state.stars);localStorage.setItem("wss3_streak",state.streak);localStorage.setItem("wss3_level1",state.completed?"1":"0")}
+function tokenAt(ref){return ref.source==="pool"?state.pool.find(t=>t.id===ref.id):state.board[ref.p][ref.i]}
+function isLocked(p,i){return PHRASES[p].lock===i}
+function phraseCorrect(p){return PHRASES[p].solution.every((w,i)=>state.board[p][i]&&state.board[p][i].word===w)}
+function correctCount(){return PHRASES.reduce((n,_,p)=>n+(phraseCorrect(p)?1:0),0)}
+function allFilled(){return state.board.every((row,p)=>row.every((t,i)=>isLocked(p,i)||!!t))}
+function render(){
+ $("boardStars").textContent=state.stars;$("boardStreak").textContent=state.streak;$("wordsLeft").textContent=state.pool.length;
+ const clean=correctCount();$("solvedCount").textContent=clean+"/5";
+ $("levelDots").innerHTML=PHRASES.map((_,i)=>'<span class="level-dot '+(phraseCorrect(i)?"clean":"")+'">'+(i+1)+'</span>').join("");
+ $("lanes").innerHTML="";
+ PHRASES.forEach((p,pi)=>{
+   const lane=document.createElement("article");lane.className="lane";lane.style.setProperty("--lane",p.tone);lane.style.setProperty("--laneBg",p.bg);
+   lane.innerHTML='<div class="lane-icon">'+p.icon+'</div><h3>'+p.name+'</h3><div class="slots"></div><div class="lane-hint"><button class="hint-buy">💡 Hint &nbsp; ⭐1</button><div class="hint-text">'+p.clue+'</div></div>';
+   const slots=lane.querySelector(".slots");
+   p.solution.forEach((_,i)=>{
+     const t=state.board[pi][i];const b=document.createElement("button");b.className="slot"+(isLocked(pi,i)?" locked":"")+(t&&!isLocked(pi,i)?" filled":"")+(state.selected&&state.selected.source==="slot"&&state.selected.p===pi&&state.selected.i===i?" selected":"");b.textContent=t?t.word:"";b.disabled=isLocked(pi,i);b.onclick=()=>tapSlot(pi,i);slots.appendChild(b);
+   });
+   const hb=lane.querySelector(".hint-buy"),ht=lane.querySelector(".hint-text");if(state.hints.has(pi)){ht.classList.add("show");hb.textContent="💡 Clue shown"}hb.onclick=()=>buyHint(pi);
+   $("lanes").appendChild(lane);
+ });
+ $("poolWords").innerHTML="";
+ state.pool.forEach((t,i)=>{const b=document.createElement("button");b.className="pool-word"+(state.selected&&state.selected.source==="pool"&&state.selected.id===t.id?" selected":"");b.textContent=t.word;b.style.setProperty("--r",((i%5)-2)*1.2+"deg");b.onclick=e=>{e.stopPropagation();tapPool(t.id)};$("poolWords").appendChild(b)});
+ $("checkAll").disabled=!allFilled();
+}
+function clearSelected(){state.selected=null}
+function tapPool(id){
+ if(!state.selected){state.selected={source:"pool",id};$("boardMessage").textContent="Word lifted — tap any empty slot, or a filled slot to swap it.";buzz(8);render();return}
+ if(state.selected.source==="pool"){
+   if(state.selected.id===id){clearSelected();$("boardMessage").textContent="Selection cleared.";render();return}
+   state.selected={source:"pool",id};render();return
+ }
+ const ref=state.selected,from=state.board[ref.p][ref.i],incoming=state.pool.find(t=>t.id===id);
+ state.board[ref.p][ref.i]=incoming;state.pool=state.pool.filter(t=>t.id!==id);state.pool.push(from);clearSelected();$("boardMessage").textContent="Swapped back through the slop pile.";buzz(12);render();
+}
+function tapSlot(p,i){
+ if(isLocked(p,i))return;
+ const here=state.board[p][i];
+ if(!state.selected){
+   if(!here){$("boardMessage").textContent="Pick a word from the slop pile first.";return}
+   state.selected={source:"slot",p,i};$("boardMessage").textContent="Placed word lifted — tap another slot or a pool word.";buzz(8);render();return
+ }
+ if(state.selected.source==="pool"){
+   const incoming=state.pool.find(t=>t.id===state.selected.id);
+   state.pool=state.pool.filter(t=>t.id!==incoming.id);
+   if(here)state.pool.push(here);
+   state.board[p][i]=incoming;clearSelected();$("boardMessage").textContent="Placed. Keep rebuilding the five phrases.";buzz(12);render();return
+ }
+ const a=state.selected;if(a.p===p&&a.i===i){clearSelected();render();return}
+ const from=state.board[a.p][a.i];state.board[a.p][a.i]=here;state.board[p][i]=from;clearSelected();$("boardMessage").textContent="Slots swapped.";buzz(12);render();
+}
+function buyHint(p){
+ if(state.hints.has(p)){toast("That clue is already open.");return}
+ if(state.stars<1){toast("You need ⭐1 for a clue.");return}
+ state.stars--;state.hints.add(p);save();$("boardMessage").textContent="⭐1 spent. Lane "+(p+1)+" clue revealed.";buzz(10);render()
+}
+function checkAll(){
+ if(!allFilled()){toast("Use every word in the slop pile first.");return}
+ const n=correctCount();
+ if(n<5){$("boardMessage").textContent=n+"/5 phrases are clean. "+(5-n)+" still slopping around — I won't tell you which.";buzz(18);render();return}
+ if(!state.completed){state.completed=true;state.stars+=5;if(state.streak===0)state.streak=1;save()}
+ $("fiveClean").innerHTML=PHRASES.map((p,i)=>'<div class="clean-chip"><b>✓</b>'+p.name+'</div>').join("");
+ $("levelReward").textContent="⭐ +5";buzz(28);screen("success")
+}
+function resetBoard(){state.board=freshBoard();state.pool=freshPool();state.selected=null;state.hints=new Set();render()}
+function openBoard(){render();screen("puzzle")}
+$("poolBox").onclick=()=>{if(state.selected&&state.selected.source==="slot"){const a=state.selected,from=state.board[a.p][a.i];state.board[a.p][a.i]=null;state.pool.push(from);clearSelected();$("boardMessage").textContent="Word returned to the slop pile.";render()}};
+$("startBtn").onclick=()=>{syncHome();screen("home")};$("dailyBtn").onclick=openBoard;$("todayCard").onclick=openBoard;$("backBtn").onclick=()=>{syncHome();screen("home")};$("checkAll").onclick=checkAll;
+$("nextBtn").onclick=()=>{syncHome();screen("home");toast("Level 1 complete — all five slops cleaned.")};
+$("shareBtn").onclick=async()=>{const text="I cleaned all five slops in WORD slop swap! 🟢⭐";try{if(navigator.share)await navigator.share({title:"WORD slop swap",text});else{await navigator.clipboard.writeText(text);toast("Result copied!")}}catch(e){}};
+function syncHome(){if($("starsHome"))$("starsHome").textContent=state.stars;if($("streakHome"))$("streakHome").textContent=state.streak;const p=$("progress");if(p){p.innerHTML="";for(let i=0;i<5;i++){const d=document.createElement("div");d.className="dot"+(state.completed?" done":"");d.textContent=state.completed?"✓":String(i+1);p.appendChild(d);if(i<4){const b=document.createElement("div");b.className="bar"+(state.completed?" done":"");p.appendChild(b)}}}}
 $("settingsBtn").onclick=()=>toast("Settings comes after the play-test.");
-document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{if(b.dataset.category==="Sayings")openPuzzle(0);else if(b.dataset.category==="Riddles")openPuzzle(3);else toast(b.dataset.category+" pack is queued for the next test build.")});
-$("navPuzzles").onclick=()=>toast("Puzzle library comes after core play-testing.");$("navStats").onclick=()=>toast("Stats screen comes after core play-testing.");$("navProfile").onclick=()=>toast("Profile comes after core play-testing.");
-sync();
+document.querySelectorAll(".cat").forEach(b=>b.onclick=openBoard);
+$("navPuzzles").onclick=()=>toast("More five-slop boards are next.");$("navStats").onclick=()=>toast("Stats screen comes after core play-testing.");$("navProfile").onclick=()=>toast("Profile comes after core play-testing.");
+syncHome();render();
 })();
 </script>
 </body></html>
