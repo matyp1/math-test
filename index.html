@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff6d8">
+<title>WORDslop then SWAP</title>
+<style>
+:root{
+  --ink:#17283c;--muted:#707783;--paper:#fffdf7;--cream:#fff6d8;
+  --sun:#ffd45f;--sun-soft:#fff0ae;--coral:#ef765a;--mint:#9eddbc;
+  --line:#decfa5;--shadow:#d8ceb3;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#fffaf0 0%,var(--cream) 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif}
+button{font:inherit}
+.app{min-height:100svh;max-width:720px;margin:0 auto;padding:max(20px,env(safe-area-inset-top)) 18px max(24px,env(safe-area-inset-bottom));display:grid;grid-template-rows:auto auto 1fr auto;gap:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.brand{display:grid;grid-template-columns:auto auto;width:max-content;font-weight:950;line-height:.82;font-size:clamp(22px,6vw,30px);letter-spacing:-.04em}
+.brand .slop{color:var(--coral);transform:rotate(-4deg) translateY(2px)}
+.brand .then{font-size:.47em;color:var(--muted);align-self:end;letter-spacing:0}
+.brand .swap{transform:translateX(-8px)}
+.stats{display:flex;gap:8px}.pill{border:2px solid var(--line);border-radius:999px;background:#fffdf7cc;padding:10px 13px;font-weight:900;white-space:nowrap}.pill.star{background:var(--sun)}
+.hint{background:var(--sun-soft);border:2px solid #e5c94d;border-radius:18px;padding:18px 20px;box-shadow:0 8px 0 #efd56d}
+.hint small{display:block;color:var(--muted);font-size:11px;font-weight:950;letter-spacing:.16em;margin-bottom:7px}
+.hint strong{font-size:clamp(20px,5vw,27px);display:flex;align-items:center;gap:10px}
+.play{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:390px;text-align:center}
+.instruction{margin:0 0 26px;color:var(--muted);font-weight:800;font-size:15px}
+.rail{width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:26px 6px 32px;border-bottom:3px solid #e7ddb9;min-height:132px}
+.word{
+  border:2px solid #cec4a4;background:var(--paper);color:var(--ink);border-radius:11px;
+  padding:13px 17px;min-height:56px;font-size:clamp(19px,5vw,24px);font-weight:900;
+  box-shadow:0 6px 0 var(--shadow),0 10px 22px #17283c12;
+  user-select:none;-webkit-user-select:none;cursor:pointer;
+  transition:transform .16s cubic-bezier(.2,.8,.2,1),box-shadow .16s,border-color .16s,background-color .16s;
+}
+.word:nth-child(odd){transform:translateY(-2px) rotate(-1deg)}
+.word:nth-child(even){transform:translateY(2px) rotate(1deg)}
+.word:active{transform:translateY(-5px) scale(1.03)}
+.word:focus-visible{outline:3px solid #5673ff;outline-offset:4px}
+.word.selected{
+  border-color:var(--coral);background:#fff2de;transform:translateY(-10px) scale(1.06) rotate(0deg);
+  box-shadow:0 10px 0 #ef765a4d,0 18px 30px #17283c20
+}
+.word.swapping{animation:swapPop .28s ease}
+.solved .word{transform:none!important;border-color:var(--mint);box-shadow:0 5px 0 #9dddbc88}
+.message{min-height:28px;margin-top:16px;color:var(--muted);font-size:13px;font-weight:750}
+.success{display:none;margin-top:20px;max-width:350px;background:#fff;border:2px solid var(--mint);border-radius:16px;padding:16px;box-shadow:0 6px 0 #b8e6cd}
+.success.show{display:block;animation:rise .34s ease}
+.answer{font-size:19px;font-weight:950}.reward{display:inline-block;margin:10px 0 5px;padding:8px 12px;border-radius:999px;background:var(--sun);font-weight:950}.quip{font-size:13px;font-weight:800;color:#445164}
+.reset{justify-self:center;border:2px solid var(--line);background:#fffdf7;border-radius:999px;padding:11px 18px;color:var(--ink);font-weight:900;cursor:pointer}
+.reset:active{transform:translateY(1px)}
+@keyframes swapPop{50%{transform:translateY(-6px) scale(1.055)}}@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+@media(max-width:380px){.app{padding-inline:14px}.word{padding-inline:14px}.pill{padding-inline:10px}.brand{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="brand" aria-label="WORDslop then SWAP">
+      <span>WORD</span><span class="slop">slop</span>
+      <span class="then">then</span><span class="swap">SWAP</span>
+    </div>
+    <div class="stats">
+      <span class="pill">1 / 5</span>
+      <span class="pill star" id="starCount">★ 12</span>
+    </div>
+  </header>
+
+  <section class="hint">
+    <small>YOUR HINT</small>
+    <strong><span aria-hidden="true">📣</span> SHOUTING ACTIONS</strong>
+  </section>
+
+  <section class="play" id="play">
+    <p class="instruction" id="instruction">Tap a word, then tap another to swap.</p>
+    <div class="rail" id="rail" aria-label="Scrambled sentence"></div>
+    <div class="message" id="message" aria-live="polite"></div>
+
+    <div class="success" id="success">
+      <div class="answer">Actions speak louder than words.</div>
+      <div class="reward">★ +1</div>
+      <div class="quip">✨ Quip: “Well... that wasn’t hard to swallow.”</div>
+    </div>
+  </section>
+
+  <button class="reset" id="reset" type="button">↻ Reset</button>
+</main>
+
+<script>
+(() => {
+  const START = ["words","than","louder","speak","actions"];
+  const SOLUTION = ["actions","speak","louder","than","words"];
+
+  let words = [...START];
+  let selected = null;
+  let solved = false;
+  let stars = 12;
+
+  const rail = document.getElementById("rail");
+  const play = document.getElementById("play");
+  const instruction = document.getElementById("instruction");
+  const message = document.getElementById("message");
+  const success = document.getElementById("success");
+  const starCount = document.getElementById("starCount");
+  const reset = document.getElementById("reset");
+
+  const buzz = (ms) => {
+    try { if ("vibrate" in navigator) navigator.vibrate(ms); } catch (_) {}
+  };
+
+  function render(animateIndexes = []) {
+    rail.innerHTML = "";
+    words.forEach((word, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "word";
+      if (selected === index) button.classList.add("selected");
+      if (animateIndexes.includes(index)) button.classList.add("swapping");
+      button.textContent = word;
+      button.disabled = solved;
+      button.setAttribute("aria-pressed", selected === index ? "true" : "false");
+      button.setAttribute("aria-label", word + ", position " + (index + 1) + " of " + words.length);
+      button.addEventListener("click", () => choose(index));
+      rail.appendChild(button);
+    });
+  }
+
+  function choose(index) {
+    if (solved) return;
+
+    if (selected === null) {
+      selected = index;
+      message.textContent = "Selected “" + words[index] + "”. Tap another word to swap.";
+      buzz(8);
+      render();
+      return;
+    }
+
+    if (selected === index) {
+      selected = null;
+      message.textContent = "Selection cleared.";
+      buzz(4);
+      render();
+      return;
+    }
+
+    const first = selected;
+    const second = index;
+    [words[first], words[second]] = [words[second], words[first]];
+    selected = null;
+    message.textContent = "Swapped.";
+    buzz(10);
+    render([first, second]);
+    checkSolved();
+  }
+
+  function checkSolved() {
+    const correct = words.every((word, i) => word === SOLUTION[i]);
+    if (!correct || solved) return;
+
+    solved = true;
+    setTimeout(() => {
+      play.classList.add("solved");
+      instruction.textContent = "Actions speak louder than words.";
+      message.textContent = "";
+      stars += 1;
+      starCount.textContent = "★ " + stars;
+      success.classList.add("show");
+      buzz(18);
+      render();
+    }, 220);
+  }
+
+  function resetGame() {
+    words = [...START];
+    selected = null;
+    solved = false;
+    stars = 12;
+    play.classList.remove("solved");
+    success.classList.remove("show");
+    instruction.textContent = "Tap a word, then tap another to swap.";
+    message.textContent = "";
+    starCount.textContent = "★ 12";
+    buzz(5);
+    render();
+  }
+
+  reset.addEventListener("click", resetGame);
+  render();
+})();
+</script>
+</body>
+</html>
