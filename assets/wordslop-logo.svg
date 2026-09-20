@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" role="img" aria-label="WORD slop swap logo">
+<rect x="28" y="25" width="644" height="465" rx="92" fill="#fffdf6" stroke="#050605" stroke-width="18"/>
+<g fill="#050605" font-family="Arial Black,Arial,sans-serif" font-weight="900" text-anchor="middle">
+ <text x="350" y="175" font-size="150" letter-spacing="-10">WORD</text>
+ <text x="268" y="324" font-size="138" letter-spacing="-10">slo</text>
+ <text x="350" y="445" font-size="132" letter-spacing="-8">swap</text>
+</g>
+<defs><radialGradient id="lg" cx="70%" cy="30%" r="80%"><stop stop-color="#caff55"/><stop offset=".28" stop-color="#6fdf0d"/><stop offset=".6" stop-color="#0d4d09"/><stop offset="1" stop-color="#030503"/></radialGradient></defs>
+<path d="M332 315c35-10 59-45 83-74 35-42 91-47 124-9 27 31 27 84 3 119-25 36-82 39-125 16-24-13-40-38-85-52z" fill="url(#lg)" stroke="#050605" stroke-width="12"/>
+<ellipse cx="474" cy="258" rx="13" ry="27" fill="#fff"/><ellipse cx="512" cy="260" rx="13" ry="27" fill="#fff"/>
+<g stroke="#050605" stroke-width="12" stroke-linecap="round"><path d="M87 278l-34-20"/><path d="M84 311H45"/><path d="M609 260l34-27"/><path d="M619 303l40 4"/></g>
+</svg>
