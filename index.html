@@ -130,11 +130,11 @@ button{font:inherit;color:inherit}
 <script>
 (()=>{
 const PUZZLES=[
- {id:"WS002",category:"Sayings",tease:"LOUDER HANDS",slop:["words","than","louder","speak","actions"],solution:["actions","speak","louder","than","words"],clue:"What people do matters more than what they promise.",quip:"Old wisdom, freshly untangled."},
  {id:"WS011",category:"Sayings",tease:"DENTAL COURAGE",slop:["bullet","the","bite"],solution:["bite","the","bullet"],clue:"Face something unpleasant instead of avoiding it.",quip:"Clean swap. That phrase has backbone now."},
+ {id:"WS002",category:"Sayings",tease:"LOUDER HANDS",slop:["words","than","louder","speak","actions"],solution:["actions","speak","louder","than","words"],clue:"What people do matters more than what they promise.",quip:"Old wisdom, freshly untangled."},
  {id:"WS009",category:"Sayings",tease:"FASHIONABLY LATE",slop:["never","than","better","late"],solution:["better","late","than","never"],clue:"Arriving eventually is preferable to not arriving at all.",quip:"The words have agreed to cooperate."},
- {id:"WS008",category:"Sayings",tease:"IMPATIENT DINNER",slop:["never","watched","boils","a","pot"],solution:["a","watched","pot","never","boils"],clue:"Waiting closely can make time feel much slower.",quip:"Lovely. The sentence is back from its little wobble."},
- {id:"WS010",category:"Sayings",tease:"SPARE BRAIN",slop:["one","than","better","are","heads","two"],solution:["two","heads","are","better","than","one"],clue:"Problems can be easier when people think together.",quip:"A tidy saying. Very respectable behaviour."}
+ {id:"WS047",category:"Riddles",tease:"CLOCK",slop:["clap","has","cannot","what","hands","but"],solution:["what","has","hands","but","cannot","clap"],clue:"Its hands travel around a numbered face.",quip:"Nice. The answer was hiding in plain sight."},
+ {id:"WS008",category:"Sayings",tease:"IMPATIENT DINNER",slop:["never","watched","boils","a","pot"],solution:["a","watched","pot","never","boils"],clue:"Waiting closely can make time feel much slower.",quip:"Lovely. The sentence is back from its little wobble."}
 ];
 const state={index:0,words:[],selected:null,moves:0,stars:localStorage.getItem("wss2_stars")===null?1:+localStorage.getItem("wss2_stars"),streak:+localStorage.getItem("wss2_streak")||0,completed:JSON.parse(localStorage.getItem("wss2_completed")||"[]"),clueUsed:false};
 const $=id=>document.getElementById(id);
@@ -155,7 +155,7 @@ $("startBtn").onclick=()=>{sync();screen("home")};$("dailyBtn").onclick=()=>open
 $("nextBtn").onclick=()=>{if(state.completed.length>=PUZZLES.length){sync();screen("home");toast("Level 1 complete — all five slops solved.");return}openPuzzle(state.index+1)};
 $("shareBtn").onclick=async()=>{const text="I just solved a WORD slop swap! 🟢⭐";try{if(navigator.share)await navigator.share({title:"WORD slop swap",text});else{await navigator.clipboard.writeText(text);toast("Result copied!")}}catch(e){}};
 $("settingsBtn").onclick=()=>toast("Settings comes after the play-test.");
-document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>b.dataset.category==="Sayings"?openPuzzle(1):toast(b.dataset.category+" pack is queued for the next test build."));
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{if(b.dataset.category==="Sayings")openPuzzle(0);else if(b.dataset.category==="Riddles")openPuzzle(3);else toast(b.dataset.category+" pack is queued for the next test build.")});
 $("navPuzzles").onclick=()=>toast("Puzzle library comes after core play-testing.");$("navStats").onclick=()=>toast("Stats screen comes after core play-testing.");$("navProfile").onclick=()=>toast("Profile comes after core play-testing.");
 sync();
 })();
