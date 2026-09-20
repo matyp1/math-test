@@ -1,13 +1,22 @@
-# WORDslop then SWAP
+# WORD slop swap — mobile play-test
 
-Independent GitHub/Vercel prototype for the sentence-order puzzle.
+A GitHub-first rebuild of the WORDslop concept based on the approved black/lime mobile visuals.
 
-## Interaction
-1. Tap a word to raise/select it.
-2. Tap a second word to swap the pair.
-3. Tap the raised word again to deselect it.
-4. Solve the phrase to trigger the star reward and Quip response.
+## Test build
+- Splash screen and branded slime mascot
+- Home screen with daily puzzle, category cards, stars and streak
+- Puzzle screen with **tap → raise → tap → swap** interaction
+- No dragging
+- Move counter
+- Check-answer flow with no wrong-answer penalty
+- Paid clue costs 1 star
+- Five Level 1 puzzles from the WORDslop puzzle library
+- Success/reward screen
+- Next-puzzle progression
+- Local persistence for stars, streak and completed puzzles
+- Mobile responsive and install-friendly browser styling
 
-There is **no drag interaction** in this version.
+## Test focus
+The point of this phase is to validate the core loop and feel on a real phone before building accounts, backend sync, daily scheduling, full category libraries, stats and profiles.
 
-The prototype is intentionally dependency-free: plain HTML, CSS, and JavaScript.
+Deployment target: Vercel.
