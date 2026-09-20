@@ -22,3 +22,16 @@ A GitHub-first rebuild of the WORDslop concept based on the approved black/lime 
 The point of this phase is to validate the core loop and feel on a real phone before building accounts, backend sync, daily scheduling, full category libraries, stats and profiles.
 
 Deployment target: Vercel.
+
+## Five Slops board — current Level 1
+Level 1 is now one shared deduction board rather than five isolated sentence screens.
+
+- Five phrase lanes are visible together.
+- Each lane has a base hint and one locked word in its correct position.
+- Every remaining word from all five phrases is mixed into one communal **Slop Pile**.
+- Tap a pool word, then a slot to place it; occupied slots and pool words can be swapped.
+- Each lane has an optional ⭐1 clue.
+- The player submits the whole board with **CHECK THE SLOP**.
+- A failed submission reports only how many of the five phrases are correct; it does not reveal which ones and does not rearrange or penalise the board.
+- All five phrases must be correct to complete the level.
+- Quip is now an expressive character mascot with face, mouth, arms, cap and gesture poses rather than a generic slime blob.
