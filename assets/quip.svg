@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-label="Quip slime mascot">
+<defs>
+ <radialGradient id="g" cx="68%" cy="30%" r="75%"><stop offset="0" stop-color="#caff55"/><stop offset=".22" stop-color="#78e70e"/><stop offset=".48" stop-color="#176d0c"/><stop offset=".72" stop-color="#061e08"/><stop offset="1" stop-color="#020403"/></radialGradient>
+ <linearGradient id="tail" x1="0" x2="1"><stop stop-color="#071207"/><stop offset=".65" stop-color="#0c4b08"/><stop offset="1" stop-color="#75e80d"/></linearGradient>
+ <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="18" result="b"/><feFlood flood-color="#89ff1d" flood-opacity=".35"/><feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<g filter="url(#glow)" stroke="#020302" stroke-width="14" stroke-linejoin="round">
+ <path fill="url(#tail)" d="M222 316c-63 8-97 47-148 46-43-1-61-24-50-52 10-25 44-33 79-36 57-5 69-47 108-59z"/>
+ <path fill="url(#g)" d="M215 348c-43-61-43-152-2-220 44-72 139-102 220-65 82 38 118 132 84 218-19 47-55 74-96 87-64 20-163 18-206-20z"/>
+</g>
+<ellipse cx="365" cy="151" rx="18" ry="38" fill="#fff"/><ellipse cx="421" cy="154" rx="18" ry="38" fill="#fff"/>
+<path d="M260 103c40-38 107-53 165-32" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="15" stroke-linecap="round"/>
+<ellipse cx="331" cy="337" rx="77" ry="14" fill="#b7ff50" opacity=".45"/>
+<g fill="#9cff29" stroke="#102006" stroke-width="8"><path d="M90 214l-60-35 72 7z"/><path d="M94 246l-77 10 72-42z"/><path d="M530 232l64-43-39 67z"/><path d="M546 274l76 8-68 25z"/></g>
+</svg>
