@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 250" role="img" aria-label="Tap gesture">
+<defs>
+ <filter id="s" x="-35%" y="-35%" width="170%" height="170%"><feGaussianBlur in="SourceAlpha" stdDeviation="7"/><feOffset dx="0" dy="8"/><feComponentTransfer><feFuncA type="linear" slope=".38"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<g filter="url(#s)" stroke="#0a0b0a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+ <path fill="#fff" d="M91 209c-14-12-23-28-31-45l-25-52c-6-13-2-25 9-30 10-5 20-1 27 10l14 25V43c0-15 8-25 20-25s20 10 20 25v58-28c0-13 8-22 19-22s19 9 19 22v34-20c0-13 8-22 19-22s19 9 19 22v57c0 32-10 55-31 70-17 12-45 13-59-5z"/>
+ <path fill="none" d="M125 101v28M163 107v25"/>
+</g>
+<path d="M61 52 42 33M54 76H26M73 34V9" stroke="#aaff32" stroke-width="10" stroke-linecap="round"/>
+</svg>
