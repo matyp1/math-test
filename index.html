@@ -45,7 +45,7 @@ button{font:inherit;color:inherit}
 .streak-card{margin:16px 0 88px;border:1px solid #303630;border-radius:20px;padding:17px;background:#141614;font-weight:800}
 .nav{position:absolute;left:14px;right:14px;bottom:max(10px,env(safe-area-inset-bottom));height:68px;border:1px solid #2d322e;background:#0d100ef2;border-radius:24px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;backdrop-filter:blur(12px)}
 .nav button{border:0;background:none;color:#aaa;font-size:11px;font-weight:800}.nav b{display:block;font-size:22px;margin-bottom:3px}.nav .active{color:var(--lime)}
-.puzzle-head{display:grid;grid-template-columns:50px 1fr 66px;align-items:start;text-align:center}.puzzle-head h1{font-size:28px;margin:4px 0}.puzzle-head p{margin:4px 0 0;color:#c2c5c2;font-size:14px;line-height:1.35}.moves{border:1px solid #4a504b;border-radius:19px;padding:9px 5px}.moves small{display:block;color:#aaa}.moves strong{font-size:28px}
+.puzzle-head{display:grid;grid-template-columns:50px 1fr 66px;align-items:start;text-align:center}.puzzle-head h1{font-size:28px;margin:4px 0}.puzzle-head p{margin:4px 0 0;color:#c2c5c2;font-size:14px;line-height:1.35}.level-kicker{color:var(--lime);font-size:11px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}.moves{border:1px solid #4a504b;border-radius:19px;padding:9px 5px}.moves small{display:block;color:#aaa}.moves strong{font-size:28px}
 .tease{margin:22px auto 2px;padding:8px 15px;border:1px solid #2d352d;border-radius:999px;color:#c6cac5;font-size:12px;font-weight:900;letter-spacing:.08em}
 .tiles{display:grid;gap:12px;margin:18px auto;width:min(100%,360px)}
 .tile{min-height:74px;border:0;border-radius:14px;background:#fffaf0;color:#050605;font-size:31px;font-weight:1000;box-shadow:0 7px 0 #c9c3b8;cursor:pointer;transition:.17s transform,.17s box-shadow,.17s background}
@@ -103,7 +103,7 @@ button{font:inherit;color:inherit}
 <section class="screen" id="puzzle">
   <div class="puzzle-head">
     <button class="iconbtn" id="backBtn">‹</button>
-    <div><h1>Swap the slop</h1><p>Tap a word to lift it, then tap another word to swap.</p></div>
+    <div><div class="level-kicker" id="puzzleCount">Level 1 · Puzzle 1 of 5</div><h1>Swap the slop</h1><p>Tap a word to lift it, then tap another word to swap.</p></div>
     <div class="moves"><small>Moves</small><strong id="moves">0</strong></div>
   </div>
   <div class="tease" id="tease">LOUDER HANDS</div>
@@ -111,7 +111,7 @@ button{font:inherit;color:inherit}
   <div class="puzzle-msg" id="puzzleMsg">No wrong-answer penalty. Keep swapping until it clicks.</div>
   <div class="clue" id="clue"></div>
   <div class="puzzle-actions">
-    <button class="hintbtn" id="hintBtn">💡 Hint <small>costs ⭐1</small></button>
+    <button class="hintbtn" id="hintBtn">💡 Extra clue <small>costs ⭐1</small></button>
     <button class="btn primary check" id="checkBtn">Check answer ›</button>
   </div>
 </section>
@@ -136,23 +136,23 @@ const PUZZLES=[
  {id:"WS008",category:"Sayings",tease:"IMPATIENT DINNER",slop:["never","watched","boils","a","pot"],solution:["a","watched","pot","never","boils"],clue:"Waiting closely can make time feel much slower.",quip:"Lovely. The sentence is back from its little wobble."},
  {id:"WS010",category:"Sayings",tease:"SPARE BRAIN",slop:["one","than","better","are","heads","two"],solution:["two","heads","are","better","than","one"],clue:"Problems can be easier when people think together.",quip:"A tidy saying. Very respectable behaviour."}
 ];
-const state={index:0,words:[],selected:null,moves:0,stars:+localStorage.getItem("wss_stars")||12,streak:+localStorage.getItem("wss_streak")||7,completed:JSON.parse(localStorage.getItem("wss_completed")||"[]"),clueUsed:false};
+const state={index:0,words:[],selected:null,moves:0,stars:localStorage.getItem("wss2_stars")===null?1:+localStorage.getItem("wss2_stars"),streak:+localStorage.getItem("wss2_streak")||0,completed:JSON.parse(localStorage.getItem("wss2_completed")||"[]"),clueUsed:false};
 const $=id=>document.getElementById(id);
 function screen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo(0,0)}
 function buzz(ms){try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}}
 function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1700)}
-function save(){localStorage.setItem("wss_stars",state.stars);localStorage.setItem("wss_streak",state.streak);localStorage.setItem("wss_completed",JSON.stringify(state.completed))}
+function save(){localStorage.setItem("wss2_stars",state.stars);localStorage.setItem("wss2_streak",state.streak);localStorage.setItem("wss2_completed",JSON.stringify(state.completed))}
 function sync(){ $("starsHome").textContent=state.stars;$("streakHome").textContent=state.streak;$("streakSuccess").textContent=state.streak;renderProgress()}
-function renderProgress(){const p=$("progress");p.innerHTML="";for(let i=0;i<4;i++){const d=document.createElement("div");d.className="dot"+(i<Math.min(state.completed.length,3)?" done":"");d.textContent=i<Math.min(state.completed.length,3)?"✓":"";p.appendChild(d);if(i<3){const b=document.createElement("div");b.className="bar"+(i<Math.min(state.completed.length,3)?" done":"");p.appendChild(b)}}}
-function openPuzzle(i=0){state.index=(i+PUZZLES.length)%PUZZLES.length;const p=PUZZLES[state.index];state.words=[...p.slop];state.selected=null;state.moves=0;state.clueUsed=false;$("moves").textContent="0";$("tease").textContent=p.tease;$("clue").textContent=p.clue;$("clue").classList.remove("show");$("puzzleMsg").textContent="No wrong-answer penalty. Keep swapping until it clicks.";renderTiles();screen("puzzle")}
+function renderProgress(){const p=$("progress");p.innerHTML="";for(let i=0;i<5;i++){const done=i<Math.min(state.completed.length,5);const d=document.createElement("div");d.className="dot"+(done?" done":"");d.textContent=done?"✓":String(i+1);p.appendChild(d);if(i<4){const b=document.createElement("div");b.className="bar"+(i<Math.min(state.completed.length,4)?" done":"");p.appendChild(b)}}}
+function openPuzzle(i=0){state.index=(i+PUZZLES.length)%PUZZLES.length;const p=PUZZLES[state.index];state.words=[...p.slop];state.selected=null;state.moves=0;state.clueUsed=false;$("moves").textContent="0";$("puzzleCount").textContent="Level 1 · Puzzle "+(state.index+1)+" of "+PUZZLES.length;$("tease").textContent=p.tease;$("clue").textContent=p.clue;$("clue").classList.remove("show");$("puzzleMsg").textContent="No wrong-answer penalty. Keep swapping until it clicks.";renderTiles();screen("puzzle")}
 function renderTiles(anim=[]){const box=$("tiles");box.innerHTML="";state.words.forEach((w,i)=>{const b=document.createElement("button");b.className="tile"+(state.selected===i?" selected":"")+(anim.includes(i)?" swap":"");b.textContent=w;b.setAttribute("aria-pressed",state.selected===i);b.onclick=()=>selectWord(i);box.appendChild(b)})}
-function selectWord(i){if(state.selected===null){state.selected=i;$("puzzleMsg").textContent="“"+state.words[i]+"” lifted — tap the word you want to swap it with.";buzz(8);renderTiles();return}if(state.selected===i){state.selected=null;$("puzzleMsg").textContent="Selection cleared.";renderTiles();return}const a=state.selected;[state.words[a],state.words[i]]=[state.words[i],state.words[a]];state.selected=null;state.moves++;$("moves").textContent=state.moves;$("puzzleMsg").textContent="Swap made. Keep going or check your answer.";buzz(12);renderTiles([a,i])}
+function selectWord(i){if(state.selected===null){state.selected=i;$("puzzleMsg").textContent="“"+state.words[i]+"” lifted — tap the word you want to swap it with.";buzz(8);renderTiles();return}if(state.selected===i){state.selected=null;$("puzzleMsg").textContent="Selection cleared.";renderTiles();return}const a=state.selected;[state.words[a],state.words[i]]=[state.words[i],state.words[a]];state.selected=null;state.moves++;$("moves").textContent=state.moves;$("puzzleMsg").textContent="Swap made. Keep going or check your answer.";buzz(12);renderTiles([a,i]);if(correct())setTimeout(solve,380)}
 function correct(){return state.words.every((w,i)=>w===PUZZLES[state.index].solution[i])}
 function check(){if(correct())solve();else{buzz(5);$("puzzleMsg").textContent=["Not the saying yet. Give the slop another swap.","Close shape — the words still need a shuffle.","Quip squints. Something is still out of order."][state.moves%3]}}
-function solve(){const p=PUZZLES[state.index];if(!state.completed.includes(p.id)){state.completed.push(p.id);state.stars++;if(state.completed.length===1)state.streak++}save();sync();$("answerCard").innerHTML=p.solution.map(w=>'<div class="answer-word">'+w.charAt(0).toUpperCase()+w.slice(1)+'</div>').join("");$("quip").textContent="Quip: “"+p.quip+"”";buzz(22);screen("success")}
+function solve(){const p=PUZZLES[state.index];if(!state.completed.includes(p.id)){state.completed.push(p.id);state.stars++;if(state.completed.length===1)state.streak++}save();sync();$("nextBtn").textContent=state.completed.length>=PUZZLES.length?"Level 1 complete ✓":"Next slop ›";$("answerCard").innerHTML=p.solution.map(w=>'<div class="answer-word">'+w.charAt(0).toUpperCase()+w.slice(1)+'</div>').join("");$("quip").textContent="Quip: “"+p.quip+"”";buzz(22);screen("success")}
 function buyHint(){if(state.clueUsed){$("clue").classList.toggle("show");return}if(state.stars<1){toast("You need 1 star for a clue.");return}state.stars--;state.clueUsed=true;save();sync();$("clue").classList.add("show");$("puzzleMsg").textContent="⭐ 1 spent. Here’s your proper clue.";buzz(10)}
 $("startBtn").onclick=()=>{sync();screen("home")};$("dailyBtn").onclick=()=>openPuzzle(0);$("todayCard").onclick=()=>openPuzzle(0);$("backBtn").onclick=()=>{sync();screen("home")};$("checkBtn").onclick=check;$("hintBtn").onclick=buyHint;
-$("nextBtn").onclick=()=>openPuzzle(state.index+1);
+$("nextBtn").onclick=()=>{if(state.completed.length>=PUZZLES.length){sync();screen("home");toast("Level 1 complete — all five slops solved.");return}openPuzzle(state.index+1)};
 $("shareBtn").onclick=async()=>{const text="I just solved a WORD slop swap! 🟢⭐";try{if(navigator.share)await navigator.share({title:"WORD slop swap",text});else{await navigator.clipboard.writeText(text);toast("Result copied!")}}catch(e){}};
 $("settingsBtn").onclick=()=>toast("Settings comes after the play-test.");
 document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>b.dataset.category==="Sayings"?openPuzzle(1):toast(b.dataset.category+" pack is queued for the next test build."));
