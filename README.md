@@ -7,10 +7,10 @@ A GitHub-first rebuild of the WORDslop concept based on the approved black/lime 
 - Home screen with daily puzzle, category cards, stars and streak
 - Puzzle screen with **tap → raise → tap → swap** interaction
 - No dragging
-- Move counter
+- Move counter and automatic solve detection when the sequence clicks
 - Check-answer flow with no wrong-answer penalty
-- Paid clue costs 1 star
-- Five Level 1 puzzles from the WORDslop puzzle library
+- New players start with 1 star; an extra clue costs 1 star
+- Five-puzzle Level 1 progress rail; all five must be solved to complete the level
 - Success/reward screen
 - Next-puzzle progression
 - Local persistence for stars, streak and completed puzzles
