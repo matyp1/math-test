@@ -29,7 +29,7 @@ button{font:inherit;color:inherit}
 .blob{width:260px;height:190px;border-radius:56% 48% 35% 48%;margin:16px auto 6px;transform:skewX(-4deg)}
 .blob:before{width:22px;height:48px;left:158px;top:43px;box-shadow:38px 2px 0 #fff}
 .blob:after{width:105px;height:54px;background:inherit;border:4px solid #020302;border-right:0;left:-35px;bottom:16px;border-radius:65% 15% 20% 55%;z-index:-1}
-.splash{justify-content:center!important;text-align:center;gap:18px}
+.brand-img{display:block;object-fit:contain}.brand-img.hero{width:min(88%,360px);margin:0 auto}.brand-img.mini{width:92px;height:74px}.mascot-img{display:block;width:min(82vw,330px);height:auto;margin:4px auto 0;filter:drop-shadow(0 0 26px #8dff2148)}.mascot-img.success-mascot{width:230px;margin-top:10px}.splash{justify-content:center!important;text-align:center;gap:18px}
 .splash .logo{margin:0 auto;transform:rotate(-2deg) scale(1.18)}
 .tagline{font-size:42px;line-height:.95;font-weight:1000;letter-spacing:-.045em;margin:14px 0 0}.tagline em{font-style:normal;color:var(--lime)}
 .splash-actions{display:grid;gap:12px;margin-top:auto}
@@ -70,9 +70,9 @@ button{font:inherit;color:inherit}
 <body>
 <div id="app">
 <section class="screen splash active" id="splash">
-  <div class="logo" aria-label="WORD slop swap"><span class="word">WORD</span><span class="slop">slop</span><span class="blobmini"></span><span class="swap">swap</span></div>
+  <img class="brand-img hero" src="assets/wordslop-logo.svg" alt="WORD slop swap">
   <div class="tagline">Unscramble<br>the <em>nonsense.</em></div>
-  <div class="blob" aria-label="Quip slime mascot"></div>
+  <img class="mascot-img" src="assets/quip.svg" alt="Quip, the WORD slop swap slime mascot">
   <div class="splash-actions">
     <button class="btn primary" id="startBtn">Start swapping ›</button>
     <button class="btn secondary" id="dailyBtn">Daily puzzle</button>
@@ -81,7 +81,7 @@ button{font:inherit;color:inherit}
 
 <section class="screen" id="home">
   <div class="row between home-top">
-    <div class="logo"><span class="word">WORD</span><span class="slop">slop</span><span class="blobmini"></span><span class="swap">swap</span></div>
+    <img class="brand-img mini" src="assets/wordslop-logo.svg" alt="WORD slop swap">
     <div class="stat"><strong>🔥 <span id="streakHome">7</span></strong><small>day streak</small></div>
     <div class="pillstat">⭐ <span id="starsHome">12</span></div>
     <button class="iconbtn" id="settingsBtn">⚙</button>
@@ -117,7 +117,7 @@ button{font:inherit;color:inherit}
 </section>
 
 <section class="screen success" id="success">
-  <div class="blob"></div>
+  <img class="mascot-img success-mascot" src="assets/quip.svg" alt="Quip celebrating">
   <h1>Nice swap!</h1><h2>You solved it!</h2>
   <div class="answer-card" id="answerCard"></div>
   <div class="quip" id="quip"></div>
