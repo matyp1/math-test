@@ -103,8 +103,8 @@ button{font:inherit;color:inherit}
     <div><div class="level-kicker" id="puzzleCount">Level 1 · Puzzle 1 of 5</div><h1>Swap the slop</h1><p>Tap a word to lift it, then tap another word to swap.</p></div>
     <div class="moves"><small>Moves</small><strong id="moves">0</strong></div>
   </div>
-  <div class="tease" id="tease">LOUDER HANDS</div>
-  <div class="tiles" id="tiles"></div>
+  <div class="tease" id="tease">DENTAL COURAGE</div>
+  <div class="tile-stage"><div class="tiles" id="tiles"></div><img class="tap-hand" id="tapHand" src="assets/tap-hand.svg" alt="" aria-hidden="true"></div>
   <div class="puzzle-msg" id="puzzleMsg">No wrong-answer penalty. Keep swapping until it clicks.</div>
   <div class="clue" id="clue"></div>
   <div class="puzzle-actions">
@@ -114,11 +114,11 @@ button{font:inherit;color:inherit}
 </section>
 
 <section class="screen success" id="success">
-  <img class="mascot-img success-mascot" src="assets/quip.svg" alt="Quip celebrating">
+  <div class="celebration"><span class="spark s1">★</span><span class="spark s2">★</span><span class="spark s3">✦</span><span class="spark s4">✦</span><img class="mascot-img success-mascot" src="assets/quip.svg" alt="Quip celebrating"></div>
   <h1>Nice swap!</h1><h2>You solved it!</h2>
   <div class="answer-card" id="answerCard"></div>
   <div class="quip" id="quip"></div>
-  <div class="rewards"><div class="rewardbox"><strong>⭐ +1</strong><br><span class="muted">Star earned!</span></div><div class="ring"><div><b id="streakSuccess">8</b><br><small>day streak</small></div></div></div>
+  <div class="rewards"><div class="rewardbox"><strong id="rewardStars">⭐ +1</strong><br><span class="muted" id="rewardLabel">Star earned!</span></div><div class="ring"><div><b id="streakSuccess">0</b><small>day streak</small></div></div></div>
   <div class="success-actions"><button class="btn primary" id="nextBtn">Next slop ›</button><button class="btn secondary" id="shareBtn">⇧ &nbsp; Share</button></div>
 </section>
 <div class="toast" id="toast"></div>
