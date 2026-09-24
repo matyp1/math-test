@@ -1,0 +1,12 @@
+{
+  "id": "level-01",
+  "title": "The Five Slops",
+  "reward": 1,
+  "puzzles": [
+    {"id":"dental-courage","category":"idiom","baseHint":"DENTAL COURAGE","icon":"🦷","solution":["BITE","THE","BULLET"],"anchorWord":"THE","anchorIndex":1,"extraClue":"Face something unpleasant bravely instead of avoiding it.","successLine":"A little grit. A great bite.","difficulty":1,"tone":"gold"},
+    {"id":"louder-hands","category":"proverb","baseHint":"LOUDER HANDS","icon":"📣","solution":["ACTIONS","SPEAK","LOUDER","THAN","WORDS"],"anchorWord":"LOUDER","anchorIndex":2,"extraClue":"What you do matters more than what you say.","successLine":"Your actions did the talking.","difficulty":1,"tone":"blue"},
+    {"id":"fashionably-late","category":"proverb","baseHint":"FASHIONABLY LATE","icon":"🕒","solution":["BETTER","LATE","THAN","NEVER"],"anchorWord":"LATE","anchorIndex":1,"extraClue":"Doing something eventually is preferable to not doing it at all.","successLine":"Worth the wait.","difficulty":1,"tone":"lime"},
+    {"id":"clock","category":"riddle","baseHint":"CLOCK","icon":"🕰️","solution":["WHAT","HAS","HANDS","BUT","CANNOT","CLAP"],"anchorWord":"HANDS","anchorIndex":2,"extraClue":"Rebuild the question whose answer is a clock. Its hands tell time, but cannot applaud.","successLine":"A round of applause. Just not from the clock.","difficulty":2,"tone":"violet"},
+    {"id":"impatient-dinner","category":"proverb","baseHint":"IMPATIENT DINNER","icon":"🍲","solution":["A","WATCHED","POT","NEVER","BOILS"],"anchorWord":"WATCHED","anchorIndex":1,"extraClue":"Staring at something while you wait makes it feel as though it takes forever.","successLine":"Now we’re cooking.","difficulty":2,"tone":"orange"}
+  ]
+}

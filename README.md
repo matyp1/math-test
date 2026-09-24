@@ -1,37 +1,46 @@
-# WORD slop swap — mobile play-test
+# WORD slop swap
 
-A GitHub-first rebuild of the WORDslop concept based on the approved black/lime mobile visuals.
+A playable mobile-first word game: learn One Slop, then rebuild five familiar phrases from one shared word pile.
 
-## Test build
-- Splash screen and branded slime mascot
-- Home screen with daily puzzle, category cards, stars and streak
-- Puzzle screen with **tap → raise → tap → swap** interaction
-- Electric-lime lifted-card state with glow / impact feedback
-- First-puzzle tap-hand teaching cue
-- No dragging
-- Move counter; **Check answer is mandatory** and the puzzle never auto-solves
-- Check-answer flow with no wrong-answer penalty
-- New players start with 1 star; an extra clue costs 1 star
-- Five-puzzle Level 1 progress rail; all five must be solved to complete the level
-- Premium Quip success/reward screen with spark animation, solved phrase, real star reward and streak ring
-- Next-puzzle progression
-- Local persistence for stars, streak and completed puzzles
-- Mobile responsive and install-friendly browser styling
+## Run
 
-## Test focus
-The point of this phase is to validate the core loop and feel on a real phone before building accounts, backend sync, daily scheduling, full category libraries, stats and profiles.
+```sh
+npm install
+npm run dev
+```
 
-Deployment target: Vercel.
+Or serve the source directly with `python3 -m http.server 4173` (no runtime dependencies).
 
-## Five Slops board — current Level 1
-Level 1 is now one shared deduction board rather than five isolated sentence screens.
+```sh
+npm test
+npm run build
+```
 
-- Five phrase lanes are visible together.
-- Each lane has a base hint and one locked word in its correct position.
-- Every remaining word from all five phrases is mixed into one communal **Slop Pile**.
-- Tap a pool word, then a slot to place it; occupied slots and pool words can be swapped.
-- Each lane has an optional ⭐1 clue.
-- The player submits the whole board with **CHECK THE SLOP**.
-- A failed submission reports only how many of the five phrases are correct; it does not reveal which ones and does not rearrange or penalise the board.
-- All five phrases must be correct to complete the level.
-- Quip is now an expressive character mascot with face, mouth, arms, cap and gesture poses rather than a generic slime blob.
+`dist/` is a complete static deployment. `tests/viewport.html` is a development-only phone/desktop harness and is not included in the build.
+
+## Rules
+
+- Select a word, then tap its destination. Filled slots swap. Placed words can move between lanes or return to the pile.
+- Each phrase has one immovable anchor word and a free base hint.
+- Only **CHECK THE SLOP** validates. Correct arrangements never auto-complete; wrong submissions preserve every word and star.
+- Start with 1 star. Extra clues cost 1. First tutorial solve and first complete Level 1 solve each earn 1. Replays never farm rewards.
+- Browser-local progress includes boards, stars, purchased clues, completion and reward state.
+
+## Source and design
+
+Canonical repository: `matyp1/math-test`; implementation branch: `build/five-slops-playtest`.
+The approved black/lime/cream direction, badge logo and glossy Quip are preserved. Desktop uses five columns; phone layouts use readable scrolling lanes and a persistent shared pile.
+
+See [the build report](docs/BUILD_REPORT.md) for actual QA results and limitations, and [asset documentation](docs/ASSETS.md) for the character lock and provenance.
+
+## Files
+
+- `data/level-01.json`: the five canonical phrases.
+- `src/game-engine.mjs`: the shared One Slop/Five Slops engine.
+- `src/state.mjs`: economy and persistence.
+- `src/app.mjs`: screens and tutorial guidance.
+- `src/styles.css`: approved visual direction and responsive layout.
+- `assets/`: canonical logo, seven-pose Quip atlas, font/license and original SVG assets.
+- `tests/engine.test.mjs`: fourteen rule, integrity and persistence tests.
+
+Level 2 is a clearly marked future level. This prototype has no accounts, ads, backend or cloud sync.
