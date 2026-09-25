@@ -1,0 +1,121 @@
+{
+  "id": "level-02",
+  "title": "Finding your feet",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws015",
+      "category": "idiom",
+      "baseHint": "SUBTEXT",
+      "icon": "📖",
+      "solution": [
+        "READ",
+        "BETWEEN",
+        "THE",
+        "LINES"
+      ],
+      "anchorWord": "THE",
+      "anchorIndex": 2,
+      "extraClue": "Look for a meaning that isn't directly stated.",
+      "successLine": "That idiom found its shoes.",
+      "difficulty": 2,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS015"
+      }
+    },
+    {
+      "id": "ws017",
+      "category": "familiar expression",
+      "baseHint": "SWEET SUCCESS",
+      "icon": "🍰",
+      "solution": [
+        "A",
+        "PIECE",
+        "OF",
+        "CAKE"
+      ],
+      "anchorWord": "PIECE",
+      "anchorIndex": 1,
+      "extraClue": "Something extremely easy to accomplish.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 2,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS017"
+      }
+    },
+    {
+      "id": "ws019",
+      "category": "idiom",
+      "baseHint": "LUNAR RARITY",
+      "icon": "🌙",
+      "solution": [
+        "ONCE",
+        "IN",
+        "A",
+        "BLUE",
+        "MOON"
+      ],
+      "anchorWord": "MOON",
+      "anchorIndex": 4,
+      "extraClue": "Something that happens very rarely.",
+      "successLine": "That idiom found its shoes.",
+      "difficulty": 2,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS019"
+      }
+    },
+    {
+      "id": "ws020",
+      "category": "idiom",
+      "baseHint": "STEEP PRICE",
+      "icon": "💸",
+      "solution": [
+        "COST",
+        "AN",
+        "ARM",
+        "AND",
+        "A",
+        "LEG"
+      ],
+      "anchorWord": "AN",
+      "anchorIndex": 1,
+      "extraClue": "Something is ridiculously expensive.",
+      "successLine": "That idiom found its shoes.",
+      "difficulty": 2,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS020"
+      }
+    },
+    {
+      "id": "ws029",
+      "category": "moral saying",
+      "baseHint": "STRAIGHT TALK",
+      "icon": "🤝",
+      "solution": [
+        "HONESTY",
+        "IS",
+        "THE",
+        "BEST",
+        "POLICY"
+      ],
+      "anchorWord": "POLICY",
+      "anchorIndex": 4,
+      "extraClue": "Telling the truth is usually the safest approach.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 2,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS029"
+      }
+    }
+  ]
+}

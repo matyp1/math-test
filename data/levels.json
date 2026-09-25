@@ -1,0 +1,84 @@
+{
+  "levels": [
+    {
+      "id": "level-01",
+      "number": 1,
+      "title": "One big, beautiful mess",
+      "tag": "LEARN THE MESS",
+      "file": "level-01.json",
+      "intro": "Use the hints and locked words to rebuild all five."
+    },
+    {
+      "id": "level-02",
+      "number": 2,
+      "title": "Finding your feet",
+      "tag": "FAMILIAR FAVOURITES",
+      "file": "level-02.json",
+      "intro": "Familiar phrases. A few more words in the mix."
+    },
+    {
+      "id": "level-03",
+      "number": 3,
+      "title": "A little resemblance",
+      "tag": "SIMILAR SOUNDS",
+      "file": "level-03.json",
+      "intro": "Some words fit more than one phrase. Let the hints guide you."
+    },
+    {
+      "id": "level-04",
+      "number": 4,
+      "title": "Kitchen wisdom",
+      "tag": "LONGER SAYINGS",
+      "file": "level-04.json",
+      "intro": "Longer sayings, one shared pile. Build the bits you recognise first."
+    },
+    {
+      "id": "level-05",
+      "number": 5,
+      "title": "Hidden in plain sight",
+      "tag": "LESS OBVIOUS ANCHORS",
+      "file": "level-05.json",
+      "intro": "The anchors give less away now. Read each hint before you commit."
+    },
+    {
+      "id": "level-06",
+      "number": 6,
+      "title": "Riddle me this",
+      "tag": "FIVE QUESTIONS",
+      "file": "level-06.json",
+      "intro": "The hint is the answer. Your job is to rebuild each riddle."
+    },
+    {
+      "id": "level-07",
+      "number": 7,
+      "title": "Words of wisdom",
+      "tag": "LONGER THREADS",
+      "file": "level-07.json",
+      "intro": "Longer thoughts need a little patience. Keep the whole saying in mind."
+    },
+    {
+      "id": "level-08",
+      "number": 8,
+      "title": "Mixed messages",
+      "tag": "SAYINGS MEET RIDDLES",
+      "file": "level-08.json",
+      "intro": "Sayings and riddles together. Check which kind of phrase each hint needs."
+    },
+    {
+      "id": "level-09",
+      "number": 9,
+      "title": "Tangled thoughts",
+      "tag": "DEEPER SLOP",
+      "file": "level-09.json",
+      "intro": "A bigger pile, with plenty of words that could belong anywhere."
+    },
+    {
+      "id": "level-10",
+      "number": 10,
+      "title": "The grand untangle",
+      "tag": "MASTER MIX",
+      "file": "level-10.json",
+      "intro": "Five long riddles. Similar words, different answers. Take your time."
+    }
+  ]
+}

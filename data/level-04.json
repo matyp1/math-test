@@ -1,0 +1,127 @@
+{
+  "id": "level-04",
+  "title": "Kitchen wisdom",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws001",
+      "category": "proverb",
+      "baseHint": "TIME PATCH",
+      "icon": "🧵",
+      "solution": [
+        "A",
+        "STITCH",
+        "IN",
+        "TIME",
+        "SAVES",
+        "NINE"
+      ],
+      "anchorWord": "STITCH",
+      "anchorIndex": 1,
+      "extraClue": "Fixing something early can stop a bigger problem later.",
+      "successLine": "Old wisdom, freshly untangled.",
+      "difficulty": 4,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS001"
+      }
+    },
+    {
+      "id": "ws003",
+      "category": "proverb",
+      "baseHint": "KITCHEN TRAFFIC",
+      "icon": "🍲",
+      "solution": [
+        "TOO",
+        "MANY",
+        "COOKS",
+        "SPOIL",
+        "THE",
+        "BROTH"
+      ],
+      "anchorWord": "COOKS",
+      "anchorIndex": 2,
+      "extraClue": "Too many people taking charge can make things worse.",
+      "successLine": "Old wisdom, freshly untangled.",
+      "difficulty": 4,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS003"
+      }
+    },
+    {
+      "id": "ws004",
+      "category": "proverb",
+      "baseHint": "BREAKFAST WORM",
+      "icon": "🐦",
+      "solution": [
+        "THE",
+        "EARLY",
+        "BIRD",
+        "CATCHES",
+        "THE",
+        "WORM"
+      ],
+      "anchorWord": "BIRD",
+      "anchorIndex": 2,
+      "extraClue": "Getting started early can give you an advantage.",
+      "successLine": "Old wisdom, freshly untangled.",
+      "difficulty": 4,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS004"
+      }
+    },
+    {
+      "id": "ws006",
+      "category": "life saying",
+      "baseHint": "CLOUD JEWELLERY",
+      "icon": "☁️",
+      "solution": [
+        "EVERY",
+        "CLOUD",
+        "HAS",
+        "A",
+        "SILVER",
+        "LINING"
+      ],
+      "anchorWord": "CLOUD",
+      "anchorIndex": 1,
+      "extraClue": "Even an unpleasant situation may contain something positive.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 4,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS006"
+      }
+    },
+    {
+      "id": "ws010",
+      "category": "proverb",
+      "baseHint": "SPARE BRAIN",
+      "icon": "🧠",
+      "solution": [
+        "TWO",
+        "HEADS",
+        "ARE",
+        "BETTER",
+        "THAN",
+        "ONE"
+      ],
+      "anchorWord": "HEADS",
+      "anchorIndex": 1,
+      "extraClue": "Problems can be easier when people think together.",
+      "successLine": "Old wisdom, freshly untangled.",
+      "difficulty": 4,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS010"
+      }
+    }
+  ]
+}

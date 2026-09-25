@@ -1,0 +1,137 @@
+{
+  "id": "level-08",
+  "title": "Mixed messages",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws032",
+      "category": "moral saying",
+      "baseHint": "MIRROR MANNERS",
+      "icon": "🪞",
+      "solution": [
+        "TREAT",
+        "OTHERS",
+        "AS",
+        "YOU",
+        "WISH",
+        "TO",
+        "BE",
+        "TREATED"
+      ],
+      "anchorWord": "YOU",
+      "anchorIndex": 3,
+      "extraClue": "Give other people the same respect you would want yourself.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 8,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS032"
+      }
+    },
+    {
+      "id": "ws035",
+      "category": "life saying",
+      "baseHint": "NEIGHBOUR’S LAWN",
+      "icon": "🌿",
+      "solution": [
+        "THE",
+        "GRASS",
+        "ISN'T",
+        "ALWAYS",
+        "GREENER",
+        "ON",
+        "THE",
+        "OTHER",
+        "SIDE"
+      ],
+      "anchorWord": "GREENER",
+      "anchorIndex": 4,
+      "extraClue": "Someone else’s situation is not necessarily better than yours.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 8,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS035"
+      }
+    },
+    {
+      "id": "ws072",
+      "category": "traditional riddle",
+      "baseHint": "AGE",
+      "icon": "🎂",
+      "solution": [
+        "WHAT",
+        "ALWAYS",
+        "GOES",
+        "UP",
+        "BUT",
+        "NEVER",
+        "COMES",
+        "DOWN"
+      ],
+      "anchorWord": "UP",
+      "anchorIndex": 3,
+      "extraClue": "Birthdays keep adding to it.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 8,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS072"
+      }
+    },
+    {
+      "id": "ws073",
+      "category": "traditional riddle",
+      "baseHint": "PROMISE",
+      "icon": "🤝",
+      "solution": [
+        "WHAT",
+        "CAN",
+        "BE",
+        "BROKEN",
+        "WITHOUT",
+        "BEING",
+        "TOUCHED"
+      ],
+      "anchorWord": "BROKEN",
+      "anchorIndex": 3,
+      "extraClue": "Breaking this can damage trust.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 8,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS073"
+      }
+    },
+    {
+      "id": "ws078",
+      "category": "traditional riddle",
+      "baseHint": "PIANO",
+      "icon": "🎹",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "MANY",
+        "KEYS",
+        "BUT",
+        "OPENS",
+        "NO",
+        "LOCKS"
+      ],
+      "anchorWord": "KEYS",
+      "anchorIndex": 3,
+      "extraClue": "Pressing its keys makes music.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 8,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS078"
+      }
+    }
+  ]
+}

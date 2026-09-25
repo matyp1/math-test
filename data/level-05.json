@@ -1,0 +1,127 @@
+{
+  "id": "level-05",
+  "title": "Hidden in plain sight",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws016",
+      "category": "idiom",
+      "baseHint": "CONFUSED DOG",
+      "icon": "🐕",
+      "solution": [
+        "YOU'RE",
+        "BARKING",
+        "UP",
+        "THE",
+        "WRONG",
+        "TREE"
+      ],
+      "anchorWord": "UP",
+      "anchorIndex": 2,
+      "extraClue": "You are pursuing the wrong person or explanation.",
+      "successLine": "That idiom found its shoes.",
+      "difficulty": 5,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS016"
+      }
+    },
+    {
+      "id": "ws034",
+      "category": "life saying",
+      "baseHint": "CONSTRUCTION DELAY",
+      "icon": "🏛️",
+      "solution": [
+        "ROME",
+        "WASN'T",
+        "BUILT",
+        "IN",
+        "A",
+        "DAY"
+      ],
+      "anchorWord": "IN",
+      "anchorIndex": 3,
+      "extraClue": "Big achievements usually take time.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 5,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS034"
+      }
+    },
+    {
+      "id": "ws036",
+      "category": "everyday truth",
+      "baseHint": "CLOCK WITH WINGS",
+      "icon": "⏰",
+      "solution": [
+        "TIME",
+        "FLIES",
+        "WHEN",
+        "YOU'RE",
+        "HAVING",
+        "FUN"
+      ],
+      "anchorWord": "WHEN",
+      "anchorIndex": 2,
+      "extraClue": "Enjoyable moments often seem to pass quickly.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 5,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS036"
+      }
+    },
+    {
+      "id": "ws041",
+      "category": "famous saying",
+      "baseHint": "FAKE GOLD",
+      "icon": "✨",
+      "solution": [
+        "ALL",
+        "THAT",
+        "GLITTERS",
+        "IS",
+        "NOT",
+        "GOLD"
+      ],
+      "anchorWord": "GLITTERS",
+      "anchorIndex": 2,
+      "extraClue": "Attractive appearances can be misleading.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 5,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS041"
+      }
+    },
+    {
+      "id": "ws043",
+      "category": "aphorism",
+      "baseHint": "PROBLEM PARENT",
+      "icon": "💡",
+      "solution": [
+        "NECESSITY",
+        "IS",
+        "THE",
+        "MOTHER",
+        "OF",
+        "INVENTION"
+      ],
+      "anchorWord": "MOTHER",
+      "anchorIndex": 3,
+      "extraClue": "Problems often force people to create solutions.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 5,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS043"
+      }
+    }
+  ]
+}

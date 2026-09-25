@@ -3,8 +3,11 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createBoard, select, place, returnToPool, wordAt, submit, restoreBoard } from '../src/game-engine.mjs';
 import { freshProgress, rewardOnce, purchaseClue, readProgress, writeProgress, STORAGE_KEY } from '../src/state.mjs';
+import { canPlay, unlockedCount, recommendedLevel, completeLevel } from '../src/campaign.mjs';
 const level=JSON.parse(await readFile(new URL('../data/level-01.json',import.meta.url)));
 const puzzles=level.puzzles;
+const manifest=JSON.parse(await readFile(new URL('../data/levels.json',import.meta.url)));
+const campaign=await Promise.all(manifest.levels.map(async meta=>({...JSON.parse(await readFile(new URL(`../data/${meta.file}`,import.meta.url))),...meta})));
 function solve(b,ps){for(let lane=0;lane<ps.length;lane++)for(let slot=0;slot<ps[lane].solution.length;slot++){if(slot===ps[lane].anchorIndex)continue;select(b,`${ps[lane].id}:${slot}`);place(b,ps,lane,slot);}}
 function memory(){const m=new Map();return{getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,v)};}
 test('canonical Level 1 has exactly the five required phrases and 18 shared tokens',()=>{
@@ -51,3 +54,34 @@ test('storage corruption and denied storage do not block the game',()=>{
  const storage=memory();storage.setItem(STORAGE_KEY,'broken');assert.deepEqual(readProgress(storage),freshProgress());assert.equal(writeProgress({setItem(){throw Error('denied');}},freshProgress()),false);
 });
 test('legacy balances and anti-farming completion survive migration',()=>{const s=memory();s.setItem('wss3_stars','7');s.setItem('wss3_level1','1');const p=readProgress(s);assert.equal(p.stars,7);assert.equal(rewardOnce(p,'level-01'),0);assert.equal(p.tutorialComplete,false);});
+
+test('ten curated levels contain fifty unique phrases and valid anchors with nondecreasing pool sizes',()=>{
+ assert.equal(campaign.length,10);const ids=new Set(),phrases=new Set();let previous=0;
+ for(const [index,l] of campaign.entries()){
+  assert.equal(l.number,index+1);assert.equal(l.puzzles.length,5);const b=createBoard(l.puzzles);assert.ok(b.pool.length>=previous);previous=b.pool.length;
+  for(const p of l.puzzles){assert.ok(!ids.has(p.id));ids.add(p.id);const phrase=p.solution.join(' ');assert.ok(!phrases.has(phrase));phrases.add(phrase);assert.equal(p.solution[p.anchorIndex],p.anchorWord);assert.ok(p.extraClue&&p.baseHint);assert.ok(p.solution.every(w=>w&&w===w.toUpperCase()));}
+ }
+ assert.equal(ids.size,50);assert.equal(previous,45);
+});
+
+test('every campaign board rejects incomplete and wrong boards, solves manually, and preserves duplicate tokens on reload',()=>{
+ for(const l of campaign){const b=createBoard(l.puzzles);assert.equal(submit(b,l.puzzles).complete,false);solve(b,l.puzzles);assert.equal(submit(b,l.puzzles).complete,true);assert.equal('complete' in b,false);
+  const first=b.lanes.flat().find(Boolean),wrongWord=Object.keys(b.tokens).find(id=>b.tokens[id].word!==b.tokens[first].word);let dest;
+  b.lanes.forEach((row,lane)=>row.forEach((id,slot)=>{if(id===wrongWord)dest={lane,slot};}));select(b,first);place(b,l.puzzles,dest.lane,dest.slot);
+  const before=JSON.stringify(b);assert.equal(submit(b,l.puzzles).complete,false);assert.equal(JSON.stringify(b),before);
+  const restored=restoreBoard(b,l.puzzles);assert.deepEqual(restored.lanes,b.lanes);assert.deepEqual(restored.pool,b.pool);
+ }
+});
+
+test('campaign unlocks sequentially, persists all ten levels, and rewards each only once',()=>{
+ let p=freshProgress();const storage=memory();assert.equal(canPlay(p,campaign,'level-10'),false);assert.equal(canPlay(p,campaign,'missing'),false);
+ for(const [i,l] of campaign.entries()){
+  assert.equal(recommendedLevel(p,campaign).id,l.id);assert.equal(canPlay(p,campaign,l.id),true);if(i<9)assert.equal(canPlay(p,campaign,campaign[i+1].id),false);
+  assert.equal(completeLevel(p,campaign,l),1);assert.equal(completeLevel(p,campaign,l),0);
+  p.boards[l.id]=createBoard(l.puzzles);writeProgress(storage,p);p=readProgress(storage);assert.equal(p.unlockedLevel,Math.min(i+2,10));
+ }
+ assert.equal(p.stars,11);assert.equal(p.completedLevels.length,10);assert.equal(p.completedPuzzles.length,50);assert.equal(Object.keys(p.boards).length,10);assert.equal(unlockedCount(p,campaign),10);
+ completeLevel(p,campaign,campaign[0]);assert.equal(p.unlockedLevel,10);assert.equal(p.stars,11);
+});
+
+test('a stray completion never unlocks levels across an unfinished gap',()=>{const p=freshProgress();p.completedLevels=['level-09'];p.unlockedLevel=10;assert.equal(unlockedCount(p,campaign),1);assert.equal(canPlay(p,campaign,'level-10'),false);});

@@ -1,0 +1,147 @@
+{
+  "id": "level-10",
+  "title": "The grand untangle",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws053",
+      "category": "traditional riddle",
+      "baseHint": "GLOVE",
+      "icon": "🧤",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "FOUR",
+        "FINGERS",
+        "AND",
+        "A",
+        "THUMB",
+        "BUT",
+        "NO",
+        "BONES"
+      ],
+      "anchorWord": "FOUR",
+      "anchorIndex": 2,
+      "extraClue": "Your hand fits inside it.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 10,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS053"
+      }
+    },
+    {
+      "id": "ws054",
+      "category": "traditional riddle",
+      "baseHint": "RIVER",
+      "icon": "🏞️",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "A",
+        "MOUTH",
+        "AND",
+        "A",
+        "BED",
+        "BUT",
+        "NEVER",
+        "SLEEPS"
+      ],
+      "anchorWord": "MOUTH",
+      "anchorIndex": 3,
+      "extraClue": "Its mouth eventually meets a larger body of water.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 10,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS054"
+      }
+    },
+    {
+      "id": "ws057",
+      "category": "traditional riddle",
+      "baseHint": "ROAD",
+      "icon": "🛣️",
+      "solution": [
+        "WHAT",
+        "GOES",
+        "UP",
+        "HILLS",
+        "AND",
+        "DOWN",
+        "HILLS",
+        "BUT",
+        "NEVER",
+        "MOVES"
+      ],
+      "anchorWord": "AND",
+      "anchorIndex": 4,
+      "extraClue": "Cars move on it, but it stays exactly where it is.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 10,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS057"
+      }
+    },
+    {
+      "id": "ws063",
+      "category": "traditional riddle",
+      "baseHint": "MAP",
+      "icon": "🗺️",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "CITIES",
+        "AND",
+        "ROADS",
+        "BUT",
+        "NO",
+        "HOUSES",
+        "OR",
+        "CARS"
+      ],
+      "anchorWord": "AND",
+      "anchorIndex": 3,
+      "extraClue": "Everything is represented rather than physically there.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 10,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS063"
+      }
+    },
+    {
+      "id": "ws077",
+      "category": "traditional riddle",
+      "baseHint": "COIN",
+      "icon": "🪙",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "A",
+        "HEAD",
+        "AND",
+        "A",
+        "TAIL",
+        "BUT",
+        "NO",
+        "BODY"
+      ],
+      "anchorWord": "HEAD",
+      "anchorIndex": 3,
+      "extraClue": "Flip it and call one of its two sides.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 10,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS077"
+      }
+    }
+  ]
+}

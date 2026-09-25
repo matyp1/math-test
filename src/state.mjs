@@ -10,7 +10,7 @@ export function readProgress(storage) {
       result.stars = Number.isSafeInteger(saved.stars) && saved.stars >= 0 ? saved.stars : 1;
       for (const key of ['rewards', 'completedPuzzles', 'completedLevels', 'clues']) result[key] = Array.isArray(saved[key]) ? [...new Set(saved[key].filter(x => typeof x === 'string'))] : [];
       result.tutorialComplete = saved.tutorialComplete === true;
-      result.unlockedLevel = saved.unlockedLevel === 2 ? 2 : 1;
+      result.unlockedLevel = Number.isSafeInteger(saved.unlockedLevel) ? Math.max(1, Math.min(10, saved.unlockedLevel)) : 1;
       result.boards = saved.boards && typeof saved.boards === 'object' ? saved.boards : {};
       result.tutorialStarted = saved.tutorialStarted === true;
       result.tutorialBiteSelected = saved.tutorialBiteSelected === true;

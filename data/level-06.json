@@ -1,0 +1,132 @@
+{
+  "id": "level-06",
+  "title": "Riddle me this",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws048",
+      "category": "traditional riddle",
+      "baseHint": "BOTTLE",
+      "icon": "🍾",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "A",
+        "NECK",
+        "BUT",
+        "NO",
+        "HEAD"
+      ],
+      "anchorWord": "NECK",
+      "anchorIndex": 3,
+      "extraClue": "You might find several of them in a fridge.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 6,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS048"
+      }
+    },
+    {
+      "id": "ws062",
+      "category": "traditional riddle",
+      "baseHint": "COLD",
+      "icon": "🤧",
+      "solution": [
+        "WHAT",
+        "CAN",
+        "YOU",
+        "CATCH",
+        "BUT",
+        "NEVER",
+        "THROW"
+      ],
+      "anchorWord": "BUT",
+      "anchorIndex": 4,
+      "extraClue": "Unfortunately, people can pass this around.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 6,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS062"
+      }
+    },
+    {
+      "id": "ws064",
+      "category": "traditional riddle",
+      "baseHint": "NEEDLE",
+      "icon": "🪡",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "ONE",
+        "EYE",
+        "BUT",
+        "CANNOT",
+        "SEE"
+      ],
+      "anchorWord": "ONE",
+      "anchorIndex": 2,
+      "extraClue": "Thread goes through its eye.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 6,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS064"
+      }
+    },
+    {
+      "id": "ws065",
+      "category": "traditional riddle",
+      "baseHint": "COMB",
+      "icon": "🪮",
+      "solution": [
+        "WHAT",
+        "HAS",
+        "MANY",
+        "TEETH",
+        "BUT",
+        "CANNOT",
+        "BITE"
+      ],
+      "anchorWord": "TEETH",
+      "anchorIndex": 3,
+      "extraClue": "Its teeth go through your hair.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 6,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS065"
+      }
+    },
+    {
+      "id": "ws069",
+      "category": "traditional riddle",
+      "baseHint": "TOWEL",
+      "icon": "🧻",
+      "solution": [
+        "WHAT",
+        "GETS",
+        "WETTER",
+        "THE",
+        "MORE",
+        "IT",
+        "DRIES"
+      ],
+      "anchorWord": "WETTER",
+      "anchorIndex": 2,
+      "extraClue": "It gets wet while making you dry.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 6,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS069"
+      }
+    }
+  ]
+}

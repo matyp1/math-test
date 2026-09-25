@@ -1,6 +1,9 @@
 # WORD slop swap — build report
 
-## Status
+## Current update
+Levels 1–10 are now implemented. See [the campaign report](CAMPAIGN_REPORT.md) for the latest content, Level 2 interaction changes and tests. The Level 1 report below records the original milestone.
+
+## Original Level 1 status
 Playable core complete and browser-tested. One Slop and Five Slops share the same engine. Hosting status is recorded separately in the handoff; a local preview is not a deployment.
 
 ## Implemented

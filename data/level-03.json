@@ -1,0 +1,123 @@
+{
+  "id": "level-03",
+  "title": "A little resemblance",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws021",
+      "category": "simile",
+      "baseHint": "CHILLED VEGETABLE",
+      "icon": "🥒",
+      "solution": [
+        "AS",
+        "COOL",
+        "AS",
+        "A",
+        "CUCUMBER"
+      ],
+      "anchorWord": "COOL",
+      "anchorIndex": 1,
+      "extraClue": "Describes someone staying very calm.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 3,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS021"
+      }
+    },
+    {
+      "id": "ws022",
+      "category": "simile",
+      "baseHint": "WEIGHTLESS BIRD",
+      "icon": "🪶",
+      "solution": [
+        "AS",
+        "LIGHT",
+        "AS",
+        "A",
+        "FEATHER"
+      ],
+      "anchorWord": "LIGHT",
+      "anchorIndex": 1,
+      "extraClue": "Describes something weighing almost nothing.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 3,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS022"
+      }
+    },
+    {
+      "id": "ws023",
+      "category": "simile",
+      "baseHint": "INSECT OVERTIME",
+      "icon": "🐝",
+      "solution": [
+        "AS",
+        "BUSY",
+        "AS",
+        "A",
+        "BEE"
+      ],
+      "anchorWord": "BUSY",
+      "anchorIndex": 1,
+      "extraClue": "Describes someone constantly occupied.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 3,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS023"
+      }
+    },
+    {
+      "id": "ws031",
+      "category": "moral saying",
+      "baseHint": "GARDEN KARMA",
+      "icon": "🌱",
+      "solution": [
+        "YOU",
+        "REAP",
+        "WHAT",
+        "YOU",
+        "SOW"
+      ],
+      "anchorWord": "REAP",
+      "anchorIndex": 1,
+      "extraClue": "Your actions often determine what comes back to you.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 3,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS031"
+      }
+    },
+    {
+      "id": "ws014",
+      "category": "idiom",
+      "baseHint": "HAMMER ACCURACY",
+      "icon": "🔨",
+      "solution": [
+        "HIT",
+        "THE",
+        "NAIL",
+        "ON",
+        "THE",
+        "HEAD"
+      ],
+      "anchorWord": "ON",
+      "anchorIndex": 3,
+      "extraClue": "Get something exactly right.",
+      "successLine": "That idiom found its shoes.",
+      "difficulty": 3,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS014"
+      }
+    }
+  ]
+}

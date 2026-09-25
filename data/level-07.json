@@ -1,0 +1,134 @@
+{
+  "id": "level-07",
+  "title": "Words of wisdom",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws005",
+      "category": "proverb",
+      "baseHint": "CHICKEN ACCOUNTING",
+      "icon": "🐣",
+      "solution": [
+        "DON'T",
+        "COUNT",
+        "YOUR",
+        "CHICKENS",
+        "BEFORE",
+        "THEY",
+        "HATCH"
+      ],
+      "anchorWord": "CHICKENS",
+      "anchorIndex": 3,
+      "extraClue": "Don't celebrate something before it actually happens.",
+      "successLine": "Old wisdom, freshly untangled.",
+      "difficulty": 7,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS005"
+      }
+    },
+    {
+      "id": "ws007",
+      "category": "proverb",
+      "baseHint": "DETERMINED DETOUR",
+      "icon": "🛤️",
+      "solution": [
+        "WHERE",
+        "THERE'S",
+        "A",
+        "WILL",
+        "THERE'S",
+        "A",
+        "WAY"
+      ],
+      "anchorWord": "WILL",
+      "anchorIndex": 3,
+      "extraClue": "Determination often helps you find a solution.",
+      "successLine": "Old wisdom, freshly untangled.",
+      "difficulty": 7,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS007"
+      }
+    },
+    {
+      "id": "ws033",
+      "category": "advice",
+      "baseHint": "BOOK COURT",
+      "icon": "📚",
+      "solution": [
+        "DON'T",
+        "JUDGE",
+        "A",
+        "BOOK",
+        "BY",
+        "ITS",
+        "COVER"
+      ],
+      "anchorWord": "BOOK",
+      "anchorIndex": 3,
+      "extraClue": "Appearances do not tell you everything.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 7,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS033"
+      }
+    },
+    {
+      "id": "ws030",
+      "category": "advice",
+      "baseHint": "SECOND ATTEMPT",
+      "icon": "🔁",
+      "solution": [
+        "IF",
+        "AT",
+        "FIRST",
+        "YOU",
+        "DON'T",
+        "SUCCEED",
+        "TRY",
+        "AGAIN"
+      ],
+      "anchorWord": "SUCCEED",
+      "anchorIndex": 5,
+      "extraClue": "Failure on the first attempt is not a reason to stop.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 7,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS030"
+      }
+    },
+    {
+      "id": "ws045",
+      "category": "famous saying",
+      "baseHint": "ROMAN TOURIST",
+      "icon": "🏛️",
+      "solution": [
+        "WHEN",
+        "IN",
+        "ROME",
+        "DO",
+        "AS",
+        "THE",
+        "ROMANS",
+        "DO"
+      ],
+      "anchorWord": "ROME",
+      "anchorIndex": 2,
+      "extraClue": "Adapt to the customs of the place you are visiting.",
+      "successLine": "That slop just turned into sense.",
+      "difficulty": 7,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS045"
+      }
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "id": "level-09",
+  "title": "Tangled thoughts",
+  "reward": 1,
+  "puzzles": [
+    {
+      "id": "ws046",
+      "category": "traditional riddle",
+      "baseHint": "SPONGE",
+      "icon": "🧽",
+      "solution": [
+        "WHAT",
+        "IS",
+        "FULL",
+        "OF",
+        "HOLES",
+        "BUT",
+        "STILL",
+        "HOLDS",
+        "WATER"
+      ],
+      "anchorWord": "OF",
+      "anchorIndex": 3,
+      "extraClue": "It becomes wet while helping clean things.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 9,
+      "tone": "gold",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS046"
+      }
+    },
+    {
+      "id": "ws050",
+      "category": "traditional riddle",
+      "baseHint": "SILENCE",
+      "icon": "🤫",
+      "solution": [
+        "WHAT",
+        "CAN",
+        "YOU",
+        "BREAK",
+        "JUST",
+        "BY",
+        "SAYING",
+        "ITS",
+        "NAME"
+      ],
+      "anchorWord": "JUST",
+      "anchorIndex": 4,
+      "extraClue": "Speaking is enough to destroy it.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 9,
+      "tone": "blue",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS050"
+      }
+    },
+    {
+      "id": "ws061",
+      "category": "traditional riddle",
+      "baseHint": "LIGHT",
+      "icon": "💡",
+      "solution": [
+        "WHAT",
+        "CAN",
+        "FILL",
+        "A",
+        "ROOM",
+        "WITHOUT",
+        "TAKING",
+        "ANY",
+        "SPACE"
+      ],
+      "anchorWord": "ROOM",
+      "anchorIndex": 4,
+      "extraClue": "Switch it on and the entire room can change.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 9,
+      "tone": "lime",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS061"
+      }
+    },
+    {
+      "id": "ws067",
+      "category": "traditional riddle",
+      "baseHint": "STAMP",
+      "icon": "✉️",
+      "solution": [
+        "WHAT",
+        "TRAVELS",
+        "THE",
+        "WORLD",
+        "WHILE",
+        "STAYING",
+        "IN",
+        "ONE",
+        "CORNER"
+      ],
+      "anchorWord": "WHILE",
+      "anchorIndex": 4,
+      "extraClue": "It goes wherever the envelope goes.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 9,
+      "tone": "violet",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS067"
+      }
+    },
+    {
+      "id": "ws080",
+      "category": "traditional riddle",
+      "baseHint": "SHADOW",
+      "icon": "👤",
+      "solution": [
+        "WHAT",
+        "FOLLOWS",
+        "YOU",
+        "AROUND",
+        "BUT",
+        "DISAPPEARS",
+        "IN",
+        "DARKNESS"
+      ],
+      "anchorWord": "AROUND",
+      "anchorIndex": 3,
+      "extraClue": "Light creates it, but darkness removes it.",
+      "successLine": "That riddle finally stopped dodging the point.",
+      "difficulty": 9,
+      "tone": "orange",
+      "source": {
+        "library": "wordslop_puzzle_library_v1.json",
+        "id": "WS080"
+      }
+    }
+  ]
+}
