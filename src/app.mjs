@@ -3,6 +3,8 @@ import { readProgress, writeProgress, rewardOnce, purchaseClue } from './state.m
 
 import { canPlay, unlockedCount, recommendedLevel, completeLevel } from './campaign.mjs';
 
+import { introMarkup, playIntro } from './intro.mjs';
+
 const app = document.querySelector('#app');
 const announcement = document.querySelector('#announcement');
 const helpDialog = document.querySelector('#helpDialog');
@@ -15,6 +17,7 @@ try { storage = window.localStorage; } catch { storage = { getItem() { return nu
 let progress = readProgress(storage);
 let level, levels, tutorialPuzzles, boards;
 let undoBoard = null;
+let stopIntro = () => {};
 let view = 'splash', mode = 'tutorial', feedback = '', wrong = false, lastReward = 0, collapsed = false, storageAvailable = true, lastFocused = null;
 
 function announce(message) { announcement.textContent = message; }
@@ -24,7 +27,7 @@ function puzzles() { return mode === 'tutorial' ? tutorialPuzzles : level.puzzle
 function board() { return boards[mode === 'tutorial' ? 'tutorial' : level.id]; }
 function stars() { return `<span class="stars" aria-label="${progress.stars} stars"><span aria-hidden="true">★</span> <b data-stars>${progress.stars}</b></span>`; }
 function topbar() { return `<header class="topbar"><button class="icon-button" data-action="home" aria-label="Go home">‹</button>${brand('small')}${stars()}<button class="icon-button help-button" data-action="help" aria-label="How to play">?</button></header>`; }
-function navigate(next) { view=next;feedback='';wrong=false;render();window.scrollTo({top:0,behavior:'instant'});app.querySelector('h1')?.focus({preventScroll:true}); }
+function navigate(next) { stopIntro();stopIntro=()=>{};view=next;feedback='';wrong=false;render();window.scrollTo({top:0,behavior:'instant'});app.querySelector('h1')?.focus({preventScroll:true}); }
 function openGame(nextMode,replay=false,id=null) {
   if(nextMode==='level'){
     const target=id ? levels.find(l=>l.id===id) : recommendedLevel(progress,levels);
@@ -42,7 +45,7 @@ function tutorialInstruction() {
   if(filledCount(board(),puzzles())===1)return {title:'One word to go.',text:'Lift the last word from the pile, then tap its space.',pose:'explain',step:2};
   return {title:'Tap a word to lift it.',text:'Start with BITE in the Slop Pile. Watch it glow lime.',pose:'point',step:1};
 }
-function splash() { return `<section class="screen splash">${brand('hero')}<h1 tabindex="-1">Unscramble<br>the <em>nonsense.</em></h1>${quip('neutral','hero-quip')}<p class="splash-copy">Familiar words. Fresh fun.</p><div class="splash-actions"><button class="button primary" data-action="start">${progress.tutorialComplete?'Keep swapping':'Start swapping'} <span>→</span></button><button class="button secondary" data-action="home">Home</button></div></section>`; }
+function splash() { return `<section class="screen splash">${brand('hero')}<h1 tabindex="-1">Unscramble<br>the <em>nonsense.</em></h1>${quip('neutral','hero-quip')}<p class="splash-copy">Familiar words. Fresh fun.</p><div class="splash-actions"><button class="button primary" data-action="start">${progress.tutorialComplete?'Keep swapping':'Start swapping'} <span>→</span></button><button class="button secondary" data-action="home">Home</button><button class="text-button" data-action="replay-intro">Meet Quip · watch intro ↻</button></div></section>`; }
 function home() {
   const next=recommendedLevel(progress,levels),finished=levels.every(l=>progress.completedLevels.includes(l.id));
   const count=levels.filter(l=>progress.completedLevels.includes(l.id)).length;
@@ -71,7 +74,7 @@ function success() {
 }
 function render() {
   const focused=document.activeElement?.dataset.focus,previousScroll=app.querySelector('.pool-words')?.scrollTop||0;
-  app.innerHTML=view==='splash'?splash():view==='home'?home():view==='success'?success():game();
+  app.innerHTML=view==='intro'?introMarkup(brand,quip):view==='splash'?splash():view==='home'?home():view==='success'?success():game();
   app.dataset.view=view;app.dataset.mode=mode;
   const pool=app.querySelector('.pool-words');if(pool)pool.scrollTop=previousScroll;
   if(focused)Array.from(app.querySelectorAll('[data-focus]')).find(el=>el.dataset.focus===focused)?.focus({preventScroll:true});
@@ -99,6 +102,8 @@ app.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   if(button.dataset.level){openGame('level',button.dataset.replay==='true',button.dataset.level);return;}
   const action=button.dataset.action;
+  if(action==='skip-intro'){navigate('splash');return;}
+  if(action==='replay-intro'){openIntro();return;}
   if(action==='start'){openGame(progress.tutorialComplete?'level':'tutorial');return;}
   if(action==='home'){navigate('home');return;}
   if(action==='help'){lastFocused=button;helpDialog.showModal();return;}
@@ -116,6 +121,11 @@ app.addEventListener('click',event=>{
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&view==='game'&&!helpDialog.open){board().selected=null;render();announce('Selection cleared.');}});
 helpDialog.addEventListener('close',()=>lastFocused?.focus());
+function openIntro(){
+  navigate('intro');
+  try{sessionStorage.setItem('word-slop-quip-intro-seen','1');}catch{}
+  stopIntro=playIntro(app.querySelector('.quip-intro'));
+}
 async function boot(){
   const response=await fetch(new URL('../data/levels.json',import.meta.url));if(!response.ok)throw Error('Puzzle data could not be loaded');
   const manifest=await response.json();
@@ -124,6 +134,8 @@ async function boot(){
   boards={tutorial:restoreBoard(progress.boards.tutorial,tutorialPuzzles)};
   for(const l of levels)boards[l.id]=restoreBoard(progress.boards[l.id]||(l.number===1?progress.boards.level:null),l.puzzles);
   progress.unlockedLevel=unlockedCount(progress,levels);
-  if(!progress.boards.tutorial)boards.tutorial.pool=['dental-courage:2','dental-courage:0'];save();render();
+  if(!progress.boards.tutorial)boards.tutorial.pool=['dental-courage:2','dental-courage:0'];save();
+  let seen=false;try{seen=sessionStorage.getItem('word-slop-quip-intro-seen')==='1';}catch{}
+  if(seen)render();else openIntro();
 }
 boot().catch(()=>{app.innerHTML=`<section class="screen loading">${brand('hero')}<h1>The slop didn’t load.</h1><p>Please check your connection and try again.</p><button class="button primary" id="retry">Try again</button></section>`;document.querySelector('#retry').onclick=()=>location.reload();});
