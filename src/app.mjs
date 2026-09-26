@@ -1,5 +1,5 @@
 import { createBoard, restoreBoard, select, place, locate, returnToPool, wordAt, filledCount, submit } from './game-engine.mjs';
-import { readProgress, writeProgress, rewardOnce, purchaseClue } from './state.mjs';
+import { freshProgress, readProgress, writeProgress, rewardOnce, purchaseClue } from './state.mjs';
 
 import { canPlay, unlockedCount, recommendedLevel, completeLevel } from './campaign.mjs';
 
@@ -45,7 +45,7 @@ function tutorialInstruction() {
   if(filledCount(board(),puzzles())===1)return {title:'One word to go.',text:'Lift the last word from the pile, then tap its space.',pose:'explain',step:2};
   return {title:'Tap a word to lift it.',text:'Start with BITE in the Slop Pile. Watch it glow lime.',pose:'point',step:1};
 }
-function splash() { return `<section class="screen splash">${brand('hero')}<h1 tabindex="-1">Unscramble<br>the <em>nonsense.</em></h1>${quip('neutral','hero-quip')}<p class="splash-copy">Familiar words. Fresh fun.</p><div class="splash-actions"><button class="button primary" data-action="start">${progress.tutorialComplete?'Keep swapping':'Start swapping'} <span>→</span></button><button class="button secondary" data-action="home">Home</button><button class="text-button" data-action="replay-intro">Meet Quip · watch intro ↻</button></div></section>`; }
+function splash() { return `<section class="screen splash">${brand('hero')}<h1 tabindex="-1">Unscramble<br>the <em>nonsense.</em></h1>${quip('neutral','hero-quip')}<p class="splash-copy">Familiar words. Fresh fun.</p><div class="splash-actions"><button class="button primary" data-action="start">${progress.tutorialComplete?'Keep swapping':'Start swapping'} <span>→</span></button><button class="button secondary" data-action="home">Home</button><button class="text-button" data-action="replay-intro">Meet Quip · watch intro ↻</button><button class="text-button" data-action="fresh">Start fresh</button></div></section>`; }
 function home() {
   const next=recommendedLevel(progress,levels),finished=levels.every(l=>progress.completedLevels.includes(l.id));
   const count=levels.filter(l=>progress.completedLevels.includes(l.id)).length;
@@ -74,7 +74,7 @@ function success() {
 }
 function render() {
   const focused=document.activeElement?.dataset.focus,previousScroll=app.querySelector('.pool-words')?.scrollTop||0;
-  app.innerHTML=view==='intro'?introMarkup(brand,quip):view==='splash'?splash():view==='home'?home():view==='success'?success():game();
+  app.innerHTML=view==='fresh'?freshScreen():view==='intro'?introMarkup(brand,quip):view==='splash'?splash():view==='home'?home():view==='success'?success():game();
   app.dataset.view=view;app.dataset.mode=mode;
   const pool=app.querySelector('.pool-words');if(pool)pool.scrollTop=previousScroll;
   if(focused)Array.from(app.querySelectorAll('[data-focus]')).find(el=>el.dataset.focus===focused)?.focus({preventScroll:true});
@@ -102,6 +102,9 @@ app.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   if(button.dataset.level){openGame('level',button.dataset.replay==='true',button.dataset.level);return;}
   const action=button.dataset.action;
+  if(action==='fresh'){navigate('fresh');return;}
+  if(action==='reset-progress'){startFresh();return;}
+  if(action==='cancel-fresh'){history.replaceState(null,'',location.pathname+location.search);navigate('splash');return;}
   if(action==='skip-intro'){navigate('splash');return;}
   if(action==='replay-intro'){openIntro();return;}
   if(action==='start'){openGame(progress.tutorialComplete?'level':'tutorial');return;}
@@ -121,6 +124,18 @@ app.addEventListener('click',event=>{
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&view==='game'&&!helpDialog.open){board().selected=null;render();announce('Selection cleared.');}});
 helpDialog.addEventListener('close',()=>lastFocused?.focus());
+function freshScreen(){
+  return `<section class="screen splash">${brand('hero')}<h1 tabindex="-1">A fresh<br><em>little mess.</em></h1>${quip('neutral','hero-quip')}<p class="splash-copy">Start again with 1 star, the tutorial and Level 1. This replaces saved words, clues and level progress on this device.</p><div class="splash-actions"><button class="button primary" data-action="reset-progress">Start fresh →</button><button class="button secondary" data-action="cancel-fresh">Keep my progress</button></div></section>`;
+}
+function startFresh(){
+  progress=freshProgress();level=levels[0];mode='tutorial';
+  boards={tutorial:createBoard(tutorialPuzzles)};
+  boards.tutorial.pool=['dental-courage:2','dental-courage:0'];
+  for(const l of levels)boards[l.id]=createBoard(l.puzzles);
+  undoBoard=null;lastReward=0;collapsed=false;save();
+  history.replaceState(null,'',location.pathname+location.search);
+  openIntro();announce('Fresh start. One star. Your new game is ready.');
+}
 function openIntro(){
   navigate('intro');
   try{sessionStorage.setItem('word-slop-quip-intro-seen','1');}catch{}
@@ -136,6 +151,6 @@ async function boot(){
   progress.unlockedLevel=unlockedCount(progress,levels);
   if(!progress.boards.tutorial)boards.tutorial.pool=['dental-courage:2','dental-courage:0'];save();
   let seen=false;try{seen=sessionStorage.getItem('word-slop-quip-intro-seen')==='1';}catch{}
-  if(seen)render();else openIntro();
+  if(location.hash==='#fresh')navigate('fresh');else if(seen)render();else openIntro();
 }
 boot().catch(()=>{app.innerHTML=`<section class="screen loading">${brand('hero')}<h1>The slop didn’t load.</h1><p>Please check your connection and try again.</p><button class="button primary" id="retry">Try again</button></section>`;document.querySelector('#retry').onclick=()=>location.reload();});
