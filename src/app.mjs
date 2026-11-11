@@ -4,6 +4,7 @@ import { freshProgress, readProgress, writeProgress, rewardOnce, purchaseClue } 
 import { canPlay, unlockedCount, recommendedLevel, completeLevel } from './campaign.mjs';
 
 import { introMarkup, playIntro } from './intro.mjs';
+import { installDragAndDrop } from './drag-controls.mjs';
 
 const app = document.querySelector('#app');
 const announcement = document.querySelector('#announcement');
@@ -62,7 +63,7 @@ function laneMarkup(p,lane) {
 }
 function poolMarkup() {
   const b=board(),selectedFrom=b.selected&&locate(b,b.selected),canReturn=selectedFrom&&!('poolIndex' in selectedFrom),tutorialLocked=mode==='tutorial'&&!progress.tutorialBiteSelected;
-  return `<section class="pile ${collapsed?'collapsed':''}" aria-label="The Slop Pile"><div class="pile-heading"><div><h2><span aria-hidden="true">∞</span> THE SLOP PILE</h2><p>${b.selected?`<strong>${b.tokens[b.selected].word}</strong> lifted · tap a space`:'Tap a word, then tap a space.'}</p></div><button class="pile-toggle" data-action="toggle-pile" aria-expanded="${!collapsed}" aria-label="${collapsed?'Expand':'Collapse'} word pile"><b>${b.pool.length}</b><span>left ${collapsed?'⌃':'⌄'}</span></button></div><div class="pool-words" role="group" aria-label="Available words">${b.pool.map((id,index)=>`<button class="word pool-word ${b.selected===id?'selected':''} ${tutorialLocked&&b.tokens[id].word==='BITE'?'teach-word':''}" data-pool="${escape(id)}" data-token="${escape(id)}" data-focus="pool-${escape(id)}" aria-label="Lift ${b.tokens[id].word}" aria-pressed="${b.selected===id}" ${tutorialLocked&&b.tokens[id].word!=='BITE'?'disabled':''} style="--tilt:${((index%5)-2)*0.65}deg">${b.tokens[id].word}</button>`).join('')||'<p class="empty-pile">Every word has a home. Happy with them? Check the slop.</p>'}</div><div class="selection-tools">${undoBoard?'<button class="text-button undo-word" data-action="undo" aria-label="Undo last move">↶ Undo</button>':''}${canReturn?'<button class="text-button return-word" data-action="return">↙ Return to pile</button>':'<span>Words can move between any lanes.</span>'}${b.selected?'<button class="text-button" data-action="deselect">Deselect</button>':''}</div></section>`;
+  return `<section class="pile ${collapsed?'collapsed':''}" aria-label="The Slop Pile"><div class="pile-heading"><div><h2><span aria-hidden="true">∞</span> THE SLOP PILE</h2><p>${b.selected?`<strong>${b.tokens[b.selected].word}</strong> lifted · tap a space`:'Tap to lift, or drag a word into a space.'}</p></div><button class="pile-toggle" data-action="toggle-pile" aria-expanded="${!collapsed}" aria-label="${collapsed?'Expand':'Collapse'} word pile"><b>${b.pool.length}</b><span>left ${collapsed?'⌃':'⌄'}</span></button></div><div class="pool-words" role="group" aria-label="Available words">${b.pool.map((id,index)=>`<button class="word pool-word ${b.selected===id?'selected':''} ${tutorialLocked&&b.tokens[id].word==='BITE'?'teach-word':''}" data-pool="${escape(id)}" data-token="${escape(id)}" data-focus="pool-${escape(id)}" aria-label="Lift ${b.tokens[id].word}" aria-pressed="${b.selected===id}" ${tutorialLocked&&b.tokens[id].word!=='BITE'?'disabled':''} style="--tilt:${((index%5)-2)*0.65}deg">${b.tokens[id].word}</button>`).join('')||'<p class="empty-pile">Every word has a home. Happy with them? Check the slop.</p>'}</div><div class="selection-tools">${undoBoard?'<button class="text-button undo-word" data-action="undo" aria-label="Undo last move">↶ Undo</button>':''}${canReturn?'<button class="text-button return-word" data-action="return">↙ Return to pile</button>':'<span>Words can move between any lanes.</span>'}${b.selected?'<button class="text-button" data-action="deselect">Deselect</button>':''}</div></section>`;
 }
 function game() {
   const tut=mode==='tutorial',instruction=tut?tutorialInstruction():{title:'Five slops. One big mess.',text:level.intro,pose:'thinking'},intro=tut&&!progress.tutorialStarted,filled=filledCount(board(),puzzles()),total=Object.keys(board().tokens).length;
@@ -121,6 +122,20 @@ app.addEventListener('click',event=>{
   if('pool' in button.dataset){const id=button.dataset.pool;if(mode==='tutorial'&&board().tokens[id].word==='BITE')progress.tutorialBiteSelected=true;select(board(),id);wrong=false;feedback='';vibrate();save();render();announce(board().selected?`${board().tokens[id].word} lifted. Tap its destination.`:'Selection cleared.');return;}
   if('lane' in button.dataset){const lane=+button.dataset.lane,slot=+button.dataset.slot;if(board().selected){moveAndRender(()=>place(board(),puzzles(),lane,slot));announce('Word placed. You can move it again.');}else if(board().lanes[lane][slot]){select(board(),board().lanes[lane][slot]);wrong=false;feedback='';vibrate();render();announce('Placed word lifted. Tap any destination or Return to pile.');}else{feedback='Lift a word from the Slop Pile first.';wrong=false;render();announce(feedback);}return;}
   if('clue' in button.dataset){const p=puzzles()[+button.dataset.clue],result=purchaseClue(progress,p.id);feedback=result==='insufficient'?'You need 1 star for an extra clue. Keep swapping—your base hints are always free.':result==='owned'?'That clue is yours. No extra stars spent.':'One star spent. Your extra clue is open beneath the phrase.';wrong=false;save();render();announce(feedback);}
+});
+installDragAndDrop(app, (tokenId, target) => {
+  if (view !== 'game' || !board()?.tokens[tokenId]) return;
+  const b = board(), from = locate(b, tokenId);
+  if (!from || (target.kind === 'pile' && 'poolIndex' in from)) return;
+  if (target.kind === 'slot' && from.lane === target.lane && from.slot === target.slot) return;
+  if (mode === 'tutorial' && !progress.tutorialBiteSelected && b.tokens[tokenId].word !== 'BITE') return;
+  if (mode === 'tutorial' && b.tokens[tokenId].word === 'BITE') progress.tutorialBiteSelected = true;
+  b.selected = null;
+  select(b, tokenId);
+  moveAndRender(() => target.kind === 'slot'
+    ? place(b, puzzles(), target.lane, target.slot)
+    : returnToPool(b));
+  announce(target.kind === 'pile' ? 'Word returned to the Slop Pile.' : 'Word dropped. You can still swap it.');
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&view==='game'&&!helpDialog.open){board().selected=null;render();announce('Selection cleared.');}});
 helpDialog.addEventListener('close',()=>lastFocused?.focus());
