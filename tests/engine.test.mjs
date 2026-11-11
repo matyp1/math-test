@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { createBoard, select, place, returnToPool, wordAt, submit, restoreBoard } from '../src/game-engine.mjs';
 import { freshProgress, rewardOnce, purchaseClue, readProgress, writeProgress, STORAGE_KEY } from '../src/state.mjs';
 import { canPlay, unlockedCount, recommendedLevel, completeLevel } from '../src/campaign.mjs';
+import { dragDistanceReached, resolveDropTarget } from '../src/drag-controls.mjs';
 const level=JSON.parse(await readFile(new URL('../data/level-01.json',import.meta.url)));
 const puzzles=level.puzzles;
 const manifest=JSON.parse(await readFile(new URL('../data/levels.json',import.meta.url)));
@@ -85,3 +86,23 @@ test('campaign unlocks sequentially, persists all ten levels, and rewards each o
 });
 
 test('a stray completion never unlocks levels across an unfinished gap',()=>{const p=freshProgress();p.completedLevels=['level-09'];p.unlockedLevel=10;assert.equal(unlockedCount(p,campaign),1);assert.equal(canPlay(p,campaign,'level-10'),false);});
+
+test('drag threshold prevents accidental moves and drop targets respect locked anchors',()=>{
+ assert.equal(dragDistanceReached(20,20,25,25),false);
+ assert.equal(dragDistanceReached(20,20,32,20),true);
+ const slot={dataset:{lane:'3',slot:'2'}};
+ const element={closest:selector=>selector.includes(':not([disabled])')?slot:null};
+ assert.deepEqual(resolveDropTarget(element),{kind:'slot',lane:3,slot:2});
+ assert.deepEqual(resolveDropTarget({closest:selector=>selector==='.pile'?{}:null}),{kind:'pile'});
+ assert.equal(resolveDropTarget({closest:()=>null}),null);
+ assert.equal(resolveDropTarget(null),null);
+});
+test('drag action uses the original move engine and undo-compatible board snapshot',()=>{
+ const b=createBoard(puzzles,()=>0.5),before=structuredClone(b);
+ b.selected=null;select(b,'dental-courage:0');assert.equal(place(b,puzzles,0,0),true);
+ b.selected=null;select(b,'dental-courage:0');assert.equal(place(b,puzzles,1,0),true);
+ assert.equal(wordAt(b,puzzles,1,0),'BITE');
+ b.selected=null;select(b,'dental-courage:0');assert.equal(returnToPool(b),true);
+ assert.ok(b.pool.includes('dental-courage:0'));
+ assert.deepEqual(before.lanes,b.lanes);
+});

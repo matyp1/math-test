@@ -20,7 +20,7 @@ npm run build
 
 ## Rules
 
-- Select a word, then tap its destination. Filled slots swap. Placed words can move between lanes or return to the pile.
+- Select a word, then tap its destination **or drag it into a slot**. Occupied slots swap; drag placed words between lanes or back to the pile. Touch, mouse and keyboard tap-to-select remain supported.
 - Each phrase has one immovable anchor word and a free base hint.
 - Only **CHECK THE SLOP** validates. Correct arrangements never auto-complete; wrong submissions preserve every word and star.
 - Start with 1 star. Extra clues cost 1. First tutorial solve and each first level completion earn 1. Replays never farm rewards.
