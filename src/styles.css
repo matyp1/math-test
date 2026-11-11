@@ -33,3 +33,11 @@ h1,.word,.check,.level-card>strong{font-family:'Lilita One',Arial,sans-serif;fon
 [data-pose="neutral"] .pose-neutral,[data-pose="thinking"] .pose-thinking,[data-pose="point"] .pose-point,[data-pose="celebrate"] .pose-celebrate{opacity:1}
 .intro-impact{position:absolute;top:352px;left:calc(50% - 70px);width:140px;height:20px;border:2px solid #b5ff58;border-radius:50%;opacity:0;z-index:0;pointer-events:none}
 @media(prefers-reduced-motion:reduce){.intro-actor .intro-pose{transition:none}}
+
+/* Optional tactile pointer movement; keyboard and tap controls remain unchanged. */
+.pool-word[data-token],.slot.filled[data-token]{touch-action:none}
+.drag-origin{opacity:.36!important}
+.drag-ghost{position:fixed;z-index:9999;pointer-events:none;transform:translate(-50%,-50%) rotate(-4deg) scale(1.08);min-height:48px;display:flex;align-items:center;justify-content:center;padding:10px 15px;border-radius:14px;border:2px solid #e8ffbd;background:#d5ff7d;color:#172408;font-weight:950;font-family:'Lilita One',Arial,sans-serif;letter-spacing:.02em;box-shadow:0 14px 35px #0009,0 0 28px #aaff4688;text-align:center;max-width:200px}
+.slot.drag-target:not(.locked){outline:3px solid var(--lime);outline-offset:2px;background:#334c1a!important}
+.pile.drag-target{outline:3px dashed var(--lime);outline-offset:-3px}
+@media(prefers-reduced-motion:reduce){.drag-ghost{transform:translate(-50%,-50%)}}
